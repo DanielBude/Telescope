@@ -3,14 +3,15 @@ package com.TelescopeDesign.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainWindow
+public class MainWindow extends JFrame
 {
-	public static void main(String[] args)
+	
+	public MainWindow()
 	{
-		JFrame frame = new JFrame();
-		frame.getContentPane().add(new JLabel("Hello, world!"));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(100, 100);
-		frame.setVisible(true);
+		this.getContentPane().add(new JLabel("Hello, world!"));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(100, 100);
+		this.setVisible(true);
 	}
+	
 }
