@@ -1,4 +1,4 @@
-package app;
+package com.TelescopeDesign.app;
 
 public class Calculation {
 

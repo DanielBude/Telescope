@@ -1,9 +1,9 @@
-package app;
+package com.TelescopeDesign.gui;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Main
+public class MainWindow
 {
 	public static void main(String[] args)
 	{
