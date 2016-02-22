@@ -2,10 +2,6 @@ package com.TelescopeDesign.gui;
 
 import javax.swing.*;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import java.awt.*;
-
 public class MainWindow extends JFrame
 {
 		/**
