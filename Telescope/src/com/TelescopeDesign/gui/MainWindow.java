@@ -1,17 +1,38 @@
 package com.TelescopeDesign.gui;
 
 import javax.swing.*;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import java.awt.*;
 
 public class MainWindow extends JFrame
 {
-	
-	public MainWindow()
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+		public MainWindow()
 	{
 		this.getContentPane().add(new JLabel("Hello, world!"));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(100, 100);
+		
+		JMenuBar  menuBar = new JMenuBar();
+		JMenu projectMenu = new JMenu("Project");
+		
+		projectMenu.add(new JMenuItem("New..."));
+		projectMenu.add(new JMenuItem("Save..."));
+		projectMenu.add(new JMenuItem("Exit..."));		
+		
+		
+		menuBar.add(projectMenu);			
+		
+		this.setJMenuBar(menuBar);
+		
+		this.setSize(getMaximumSize());
 		this.setVisible(true);
+		
 	}
 	
 }
