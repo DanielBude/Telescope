@@ -1,5 +1,7 @@
 package com.TelescopeDesign.telescopes;
 
+import java.util.HashMap;
+
 public class Tube {
 
 	Double _thickness;
@@ -7,6 +9,8 @@ public class Tube {
 	Double _diaInside;
 	Double _diaOutside;
 	
+	HashMap<String, Double>  tubeData;
+	 
 	/**
 	 * Creates a tubus which is defined by diameter inside, outside and its´s length
 	 * @param diaInside

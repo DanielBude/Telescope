@@ -37,10 +37,14 @@ public class MainFrame extends JFrame
 		getContentPane().add(toolbar, BorderLayout.NORTH);
 				
 		
-		JTable propertiesTabel = new JTable();
-		propertiesTabel.setBounds(100,100,100,100);	
-		getContentPane().add(propertiesTabel, BorderLayout.EAST);
 		
+		JTable tubeProps = new JTable();
+		
+		
+		tubeProps.co
+		tubeProps.setBounds(100,100,100,100);	
+		getContentPane().add(tubeProps, BorderLayout.EAST);
+		tubeProps.setVisible(true);
 		
 		
 		JTabbedPane tab = new JTabbedPane();
@@ -54,8 +58,7 @@ public class MainFrame extends JFrame
 		JPanel placeHolder = new JPanel();
 		
 		placeHolder.setSize(200, 100);
-		getContentPane().add(placeHolder, BorderLayout.SOUTH);
-		
+		getContentPane().add(placeHolder, BorderLayout.SOUTH);		
 		
 		
 	
