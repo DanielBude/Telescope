@@ -41,8 +41,6 @@ public class MainFrame extends JFrame
 		JTable tubeProps = new JTable();
 		
 		
-		tubeProps.co
-		tubeProps.setBounds(100,100,100,100);	
 		getContentPane().add(tubeProps, BorderLayout.EAST);
 		tubeProps.setVisible(true);
 		
