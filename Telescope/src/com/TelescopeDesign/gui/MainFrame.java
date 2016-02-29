@@ -1,7 +1,12 @@
 package com.TelescopeDesign.gui;
 
 import java.awt.BorderLayout;
+import java.util.Collection;
+import java.util.Set;
+
 import javax.swing.*;
+
+import com.TelescopeDesign.telescopes.Tube;
 
 
 public class MainFrame extends JFrame
@@ -36,13 +41,13 @@ public class MainFrame extends JFrame
 		toolbar.setSize(200, 500);
 		getContentPane().add(toolbar, BorderLayout.NORTH);
 				
-		
-		
-		JTable tubeProps = new JTable();
-		
-		
-		getContentPane().add(tubeProps, BorderLayout.EAST);
-		tubeProps.setVisible(true);
+//		
+//		
+//		Tube newtonTube = new Tube(200.0,220.0,1500.0);
+//		JTable tubeTable = new JTable();
+//		tubeTable.setModel(newtonTube);
+//		
+//		getContentPane().add(tubeTable, BorderLayout.EAST);
 		
 		
 		JTabbedPane tab = new JTabbedPane();
