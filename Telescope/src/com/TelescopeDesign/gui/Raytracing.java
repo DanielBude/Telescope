@@ -9,6 +9,6 @@ public class Raytracing extends JPanel {
 	public Raytracing()
 		{			
 			//Define Backgroudcolor
-			setBackground(Color.BLACK);
+			//setBackground(Color.BLACK);
 		}
 }

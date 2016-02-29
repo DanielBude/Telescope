@@ -1,15 +1,18 @@
 package com.TelescopeDesign.telescopes;
 
-import java.util.HashMap;
 
-public class Tube {
+import java.util.ArrayList;
 
-	Double _thickness;
-	Double _length;
-	Double _diaInside;
-	Double _diaOutside;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
+
+public class Tube implements TableModel {
+
 	
-	HashMap<String, Double>  tubeData;
+	//HashMap<Integer, HashMap<String, Double>>  _tubeData;
+	
+	ArrayList<String> _properties;
+	ArrayList<Double> _values;
 	 
 	/**
 	 * Creates a tubus which is defined by diameter inside, outside and its´s length
@@ -17,45 +20,75 @@ public class Tube {
 	 * @param diaOutside
 	 * @param length
 	 */
-	public Tube(Double diaInside, Double diaOutside, Double length) 
-	{ 
-		this._diaInside= diaInside;
-		this._diaOutside= diaOutside;
-		this._length = length;
+	public Tube (Double diaInside, Double diaOutside, Double length) 
+	{			
+		setValueAt("diameter inside [mm]", 1, 1);
+		setValueAt("diameter outside [mm]",2, 1);
+		setValueAt("length [mm]",3,1);
 		
-		this._thickness  = (diaOutside-diaInside)/2;		
+		setValueAt(diaInside, 1, 2);
+		setValueAt(diaOutside, 2, 2);
+		setValueAt(length, 3,2);
 	}
 
-	public Double get_thickness() {
-		return _thickness;
+	@Override
+	public void addTableModelListener(TableModelListener arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void set_thickness(Double _thickness) {
-		this._thickness = _thickness;
+	@Override
+	public Class<?> getColumnClass(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Double get_length() {
-		return _length;
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public void set_length(Double _length) {
-		this._length = _length;
+	@Override
+	public String getColumnName(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Double get_diaInside() {
-		return _diaInside;
+	@Override
+	public int getRowCount() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public void set_diaInside(Double _diaInside) {
-		this._diaInside = _diaInside;
+	@Override
+	public Object getValueAt(int row, int column) {
+		
+		if(column == 0)
+			return _properties.get(row);
+		else
+			return _values.get(row);
 	}
 
-	public Double get_diaOutside() {
-		return _diaOutside;
+	@Override
+	public boolean isCellEditable(int arg0, int arg1) {		
+		return false;
 	}
 
-	public void set_diaOutside(Double _diaOutside) {
-		this._diaOutside = _diaOutside;
+	@Override
+	public void removeTableModelListener(TableModelListener arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setValueAt(Object value, int row, int column) {
+				
+		if(column == 0)
+			_properties.set(row,(String) value);
+		else
+			_values.set(row, (Double) value);
+		
 	}
 	
 	
