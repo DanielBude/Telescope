@@ -2,11 +2,11 @@ package com.TelescopeDesign.app;
 
 import com.TelescopeDesign.gui.MainFrame;
 import com.TelescopeDesign.gui.TelescopePrinting;
-import com.TelescopeDesign.telescopes.Telescope;
+import com.TelescopeDesign.telescopes.TelescopeModel;
 
 public class Controller {
 	
-	public Telescope tele = new Telescope();
+	public TelescopeModel tele = new TelescopeModel();
 	public MainFrame mainframe = new MainFrame();
 	public TelescopePrinting print = new TelescopePrinting();
 

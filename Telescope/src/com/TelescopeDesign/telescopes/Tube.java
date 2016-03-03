@@ -11,8 +11,8 @@ public class Tube implements TableModel {
 	
 	//HashMap<Integer, HashMap<String, Double>>  _tubeData;
 	
-	ArrayList<String> _properties;
-	ArrayList<Double> _values;
+	private ArrayList<String> _properties;
+	private ArrayList<Double> _values;
 	 
 	/**
 	 * Creates a tubus which is defined by diameter inside, outside and its´s length
@@ -21,14 +21,27 @@ public class Tube implements TableModel {
 	 * @param length
 	 */
 	public Tube (Double diaInside, Double diaOutside, Double length) 
-	{			
-		setValueAt("diameter inside [mm]", 1, 1);
-		setValueAt("diameter outside [mm]",2, 1);
-		setValueAt("length [mm]",3,1);
+	{	
 		
-		setValueAt(diaInside, 1, 2);
-		setValueAt(diaOutside, 2, 2);
-		setValueAt(length, 3,2);
+		_properties = new ArrayList<String>(); 
+		_values = new ArrayList<Double>(); 
+		
+		setValueAt("diameter inside [mm]", 0, 0);
+		setValueAt("diameter outside [mm]",1, 0);
+		setValueAt("length [mm]",2,0);
+		
+		setValueAt(diaInside, 0, 1);
+		setValueAt(diaOutside, 1, 1);
+		setValueAt(length, 2,1);
+	}
+	
+	public 	ArrayList<String> getProperties()
+	{
+		return _properties;
+	}
+	
+	public 	ArrayList<Double> getValues(){
+		return _values;
 	}
 
 	@Override
@@ -83,11 +96,11 @@ public class Tube implements TableModel {
 
 	@Override
 	public void setValueAt(Object value, int row, int column) {
-				
+
 		if(column == 0)
-			_properties.set(row,(String) value);
+			_properties.add(row,(String) value);
 		else
-			_values.set(row, (Double) value);
+			_values.add(row, (Double) value);
 		
 	}
 	

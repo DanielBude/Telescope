@@ -16,7 +16,7 @@ public class BluePrint extends JPanel{
 	{
 		repaint();
 		//Define Backgroudcolor
-		//setBackground(Color.BLUE);
+		setBackground(Color.BLUE);
 	}
 	
 	public void paintComponent(Graphics g){
@@ -25,6 +25,7 @@ public class BluePrint extends JPanel{
 		
 		//Viereck zeichnen
 		g.drawRect(20, 20, 50, 50);
+		
 		
 		//Ausgefülltes Viereck zeichnen
 		g.setColor(Color.RED);

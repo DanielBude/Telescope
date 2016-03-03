@@ -1,12 +1,12 @@
 package com.TelescopeDesign.telescopes;
 
-public class Telescope {
+public class TelescopeModel {
 	
 	public PrimaryMirror pri;
 	public SecondaryMirror sec;
 	
 
-	public Telescope()
+	public TelescopeModel()
 	{
 		pri = new PrimaryMirror();
 		sec = new SecondaryMirror();
