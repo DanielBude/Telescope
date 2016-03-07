@@ -1,4 +1,4 @@
-package com.TelescopeDesign.telescopes;
+package com.TelescopeDesign.datamodel;
 
 public class PrimaryMirror {
 	
