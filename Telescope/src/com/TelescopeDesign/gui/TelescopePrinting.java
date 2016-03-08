@@ -6,12 +6,14 @@ import javax.swing.*;
 
 public class TelescopePrinting extends JPanel
 {
-
+	PrimaryMirrorVisualModel _priMirror = new PrimaryMirrorVisualModel();
+	
+	
 	  @Override
 	  protected void paintComponent( Graphics g )
 	  {
 	    super.paintComponent( g );
-	    g.drawLine( 10, 10, 100, 50 );
+	    //g.drawLine( 10, 10, 100, 50 );
 	    g.drawString("Na du alter Sack!", 50, 50);
 	  }
 
