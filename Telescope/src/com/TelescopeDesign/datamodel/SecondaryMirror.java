@@ -1,30 +1,37 @@
 package com.TelescopeDesign.datamodel;
 
-public class SecondaryMirror {
-	
-	private double _radius;
-	private double _offset;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
-	public SecondaryMirror()
-	{
-		_radius = 4;
-		_offset = 0;
-	}
+	public class SecondaryMirror extends DataObject {
 
-	public double getRadius() {
-		return _radius;
-	}
+	    private ArrayList<String> _header;
+		private Hashtable<String, Double> _properties;
+		
+		/**
+		 * Creates a mirror which is defined by diameter and the angle
+		 * @param diameter
+		 * @param angle
+		 */
+		public SecondaryMirror (Double diameter, Double angle) 
+		{	_header = new ArrayList<String>();
+			_header.add("Secondary Mirror Properties");
+			_header.add("");
+			
+			_properties = new Hashtable<String, Double>();				
+			_properties.put("Diameter [mm]", diameter);
+			_properties.put("Angle [°]", angle);
+		}	
 
-	public void setRadius(double _radius) {
-		this._radius = _radius;
-	}
 
-	public double getOffset() {
-		return _offset;
-	}
+		@Override
+		public Hashtable<String, Double> getData() {
+			// TODO Auto-generated method stub
+			return _properties;
+		}
 
-	public void setOffset(double _offset) {
-		this._offset = _offset;
-	}
-	
+		@Override
+		public ArrayList<String> getHeader() {
+			return _header;
+		}
 }
