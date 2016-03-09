@@ -2,12 +2,20 @@ package com.TelescopeDesign.datamodel;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Observable;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class PropertiesModel implements TableModel{
+public class PropertiesModel extends AbstractTableModel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	ArrayList<String> _tableHeader;
 	ArrayList<String> _propertyNames;
 	ArrayList<Double> _propertyValues;
@@ -21,7 +29,7 @@ public class PropertiesModel implements TableModel{
 			_partsList = new ArrayList<DataObject>();		
 			_partsList.add(new Tubus(10.0,20.0,1500.0));
 	
-			createTable(_partsList);				
+			createTable(_partsList);		
 		}
 	
 	private void createTable(ArrayList<DataObject> parts)
@@ -32,11 +40,9 @@ public class PropertiesModel implements TableModel{
 				  _tableHeader =(parts.get(i).getHeader());
 				  
 				 Hashtable<String,Double> property = parts.get(p).getData();
-
 				 
 				 for (String key :  property.keySet())
 				 {
-					 System.out.println(key);
 					 setValueAt(key, i, 0);			  
 					 setValueAt(property.get(key),i,1);
 					 i++;
@@ -68,11 +74,11 @@ public class PropertiesModel implements TableModel{
 		
 		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
-//			if(columnIndex == 1)
-//				return true;
-//			else
-//				return false;	
-			return true;
+			if(columnIndex == 1)
+				return true;
+			else
+				return false;	
+
 		}
 		
 		@Override
@@ -92,18 +98,9 @@ public class PropertiesModel implements TableModel{
 			 _propertyNames.add(rowIndex, (String) aValue);
 			else
 			 _propertyValues.add(rowIndex, (Double) aValue);
-				
+			
+			fireTableDataChanged();			
 		}
 		
-		@Override
-		public void addTableModelListener(TableModelListener l) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void removeTableModelListener(TableModelListener l) {
-			// TODO Auto-generated method stub
-			
-		}	
+
 }
