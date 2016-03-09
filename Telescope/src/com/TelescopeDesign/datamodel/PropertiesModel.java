@@ -47,7 +47,8 @@ public class PropertiesModel implements TableModel{
 		
 		@Override
 		public int getRowCount() {
-			return _propertyValues.size();
+			//return _propertyValues.size();
+			return 3;
 		}
 		
 		@Override
@@ -62,18 +63,16 @@ public class PropertiesModel implements TableModel{
 		
 		@Override
 		public Class<?> getColumnClass(int columnIndex) {
-			if(columnIndex == 0)
-				return _propertyNames.getClass();
-			else
-				return _propertyValues.getClass();			
+			return getValueAt(0,columnIndex).getClass();			
 		}
 		
 		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			if(columnIndex == 1)
-				return true;
-			else
-				return false;			
+//			if(columnIndex == 1)
+//				return true;
+//			else
+//				return false;	
+			return true;
 		}
 		
 		@Override
