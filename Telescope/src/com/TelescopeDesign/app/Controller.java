@@ -6,8 +6,9 @@ import javax.swing.event.TableModelListener;
 import com.TelescopeDesign.datamodel.PropertiesModel;
 import com.TelescopeDesign.gui.MainFrame;
 import com.TelescopeDesign.gui.TelescopePrinting;
+import com.sun.corba.se.impl.ior.NewObjectKeyTemplateBase;
 
-public class Controller implements TableModelListener{
+public class Controller {
 	
 	public PropertiesModel pMod = new PropertiesModel();
 	public MainFrame mainframe = new MainFrame();
@@ -21,14 +22,20 @@ public class Controller implements TableModelListener{
 		mainframe.repaint();
 		mainframe.setVisible(true);
 	
-		pMod.addTableModelListener(this);
+		
+		
+		TableModelListener tml = new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				System.out.println("Tabelle hat sich geändert");
+			}
+		};
+		
+		pMod.addTableModelListener(tml);
+		
 	}
 
 
-	@Override
-	public void tableChanged(TableModelEvent e) {
-		
-		System.out.println("test");
-	}	
 	
 }
