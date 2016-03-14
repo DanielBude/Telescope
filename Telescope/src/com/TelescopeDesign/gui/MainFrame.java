@@ -1,12 +1,13 @@
 package com.TelescopeDesign.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.util.Collection;
+import java.util.Set;
+
 import java.awt.Dimension;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
+import javax.swing.*;
 
 
 public class MainFrame extends JFrame
@@ -19,7 +20,7 @@ public class MainFrame extends JFrame
 
 	public MainFrame()
 	{
-	
+		this.getContentPane().add(new JLabel("Hello, world!"));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
 		this.setTitle("Telescope Designer");
@@ -36,53 +37,20 @@ public class MainFrame extends JFrame
 		menuBar.add(projectMenu);			
 		
 		
-		//Placeholder for a Toolbar
+		//Placeholder for more Informations
 		JPanel toolbar = new JPanel();
 				
 		toolbar.setSize(200, 500);
 		getContentPane().add(toolbar, BorderLayout.NORTH);
-		
-		//PropertyPanel
-
-		getContentPane().add(new PropertiesPanel(), BorderLayout.EAST);
-		
-	
-		
-		//DrawingsPanel
-		
-		
-		JTabbedPane drawingPanel = new JTabbedPane();
-		drawingPanel.setTabPlacement(JTabbedPane.BOTTOM);
-		drawingPanel.setBackground(Color.WHITE);
-		
-		JPanel spotDiagramm = new JPanel();
-		spotDiagramm.setBackground(Color.WHITE);
-		
-		drawingPanel.addTab("Spot Diagramm", spotDiagramm);
-		drawingPanel.addTab("Illumination", new JPanel());
-
-		
-		
-		//Abberation Panel
-		
-		JPanel southPanel = new JPanel();
 				
-		String[] abbHeader = {"Aberrations","Value"};
+//		
+//		
+//		Tube newtonTube = new Tube(200.0,220.0,1500.0);
+//		JTable tubeTable = new JTable();
+//		tubeTable.setModel(newtonTube);
+//		
+//		getContentPane().add(tubeTable, BorderLayout.EAST);
 		
-		DefaultTableModel abbModel = new  DefaultTableModel(abbHeader,3);
-		JTable abberationsTab = new JTable(abbModel);
-		
-	
-
-		southPanel.setLayout(new BorderLayout());
-		southPanel.add(new JScrollPane(abberationsTab), BorderLayout.EAST);
-		southPanel.add(drawingPanel, BorderLayout.CENTER);
-		//southPanel.add(propertyPanel, BorderLayout.WEST);
-	
-			getContentPane().add(southPanel ,BorderLayout.SOUTH);
-		
-		
-		//Visualisation Panel
 		
 		JTabbedPane tab = new JTabbedPane();
 		tab.setTabPlacement(JTabbedPane.BOTTOM);
@@ -90,14 +58,18 @@ public class MainFrame extends JFrame
 		tab.add("Raytracing",new Raytracing());
 		getContentPane().add(tab, BorderLayout.CENTER);
 		
-
+		
+		//Placeholder for more Informations
+		JPanel placeHolder = new JPanel();
+		
+		placeHolder.setSize(200, 100);
+		getContentPane().add(placeHolder, BorderLayout.SOUTH);		
 		
 		this.setSize(getMaximumSize());
 		this.setMinimumSize(new Dimension(500,300));
-		this.pack();
 		this.setVisible(true);
 		
-
+		// Scrollbar sollte noch hinzugefügt werden
 	}
 
 	public BluePrint getBluePrint()
