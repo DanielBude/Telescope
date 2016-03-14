@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import com.TelescopeDesign.datamodel.PropertiesModel;
+
 
 
 public class MainFrame extends JFrame
@@ -18,7 +20,7 @@ public class MainFrame extends JFrame
 	private static final long serialVersionUID = 1L;
     private JTable propertyTable;
     
-	public MainFrame()
+	public MainFrame(PropertiesModel pMod)
 	{	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
@@ -43,7 +45,7 @@ public class MainFrame extends JFrame
 		
 		//PropertyPanel
 
-		getContentPane().add(new PropertiesPanel(), BorderLayout.EAST);
+		getContentPane().add(new PropertiesPanel(pMod), BorderLayout.EAST);
 		
 	
 		

@@ -87,8 +87,7 @@ public class PropertiesModel extends AbstractTableModel{
 				return _propertyNames.get(rowIndex);
 			}
 			else
-				return _propertyValues.get(rowIndex);
-			
+				return _propertyValues.get(rowIndex);			
 		}
 		
 		@Override
@@ -97,11 +96,8 @@ public class PropertiesModel extends AbstractTableModel{
 			if(columnIndex == 0)
 			 _propertyNames.set(rowIndex, (String) aValue);
 			else
-			 _propertyValues.set(0, (Double) aValue);
+			 _propertyValues.set(rowIndex, (Double) aValue);
 			
-			
-			
-			fireTableDataChanged();
-			
+			fireTableDataChanged();			
 		}
 }
