@@ -27,7 +27,6 @@ public class Controller implements TableModelListener{
 
 	@Override
 	public void tableChanged(TableModelEvent e) {
-		// TODO Auto-generated method stub
 		
 		System.out.println("test");
 	}	

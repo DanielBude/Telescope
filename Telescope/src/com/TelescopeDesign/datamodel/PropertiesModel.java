@@ -53,8 +53,7 @@ public class PropertiesModel extends AbstractTableModel{
 		
 		@Override
 		public int getRowCount() {
-			//return _propertyValues.size();
-			return 3;
+			return _propertyValues.size();		
 		}
 		
 		@Override
@@ -85,9 +84,13 @@ public class PropertiesModel extends AbstractTableModel{
 		public Object getValueAt(int rowIndex, int columnIndex) {	
 			
 			if(columnIndex == 0)
+			{
+				System.out.println(_propertyNames);
+				System.out.println(rowIndex);
 				return _propertyNames.get(rowIndex);
+			}
 			else
-				return  _propertyValues.get(rowIndex);
+				return _propertyValues.get(rowIndex);
 			
 		}
 		
@@ -101,6 +104,4 @@ public class PropertiesModel extends AbstractTableModel{
 			
 			fireTableDataChanged();			
 		}
-		
-
 }

@@ -16,15 +16,14 @@ public class MainFrame extends JFrame
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+    private JTable propertyTable;
+    
 	public MainFrame()
-	{
-	
+	{	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
 		this.setTitle("Telescope Designer");
-		
-	
+			
 		JMenuBar  menuBar = new JMenuBar();	
 		this.setJMenuBar(menuBar);
 		
@@ -79,7 +78,7 @@ public class MainFrame extends JFrame
 		southPanel.add(drawingPanel, BorderLayout.CENTER);
 		//southPanel.add(propertyPanel, BorderLayout.WEST);
 	
-			getContentPane().add(southPanel ,BorderLayout.SOUTH);
+		getContentPane().add(southPanel ,BorderLayout.SOUTH);
 		
 		
 		//Visualisation Panel
@@ -89,16 +88,13 @@ public class MainFrame extends JFrame
 		tab.add("Blue Print", bp);
 		tab.add("Raytracing",new Raytracing());
 		getContentPane().add(tab, BorderLayout.CENTER);
-		
-
-		
+				
 		this.setSize(getMaximumSize());
 		this.setMinimumSize(new Dimension(500,300));
 		this.pack();
-		this.setVisible(true);
-		
-
+		this.setVisible(true);	
 	}
+
 
 	public BluePrint getBluePrint()
 	{

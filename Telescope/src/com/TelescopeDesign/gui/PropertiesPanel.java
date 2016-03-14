@@ -12,7 +12,7 @@ import com.TelescopeDesign.datamodel.PropertiesModel;
 
 public class PropertiesPanel extends JPanel{
 	
-	
+	private JTable _tab;
 	/**
 	 * 
 	 */
@@ -23,9 +23,14 @@ public class PropertiesPanel extends JPanel{
 		
 		PropertiesModel pMod = new PropertiesModel();
 		
-		JTable tab = new JTable(pMod);
+		JTable _tab = new JTable(pMod);
 	
-		add(new JScrollPane(tab));	
+		add(new JScrollPane(_tab));	
+	}
+	
+	public JTable getTable()
+	{
+		return _tab;
 	}
 	
 
