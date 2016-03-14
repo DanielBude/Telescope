@@ -9,6 +9,7 @@ public class PrimaryMirror extends DataObject{
 	private double _radius;
 	private double _thickness;
 	private double _focalLength;
+	private String _glass;
 	private double _x;
 	private double _y;
 	
@@ -22,6 +23,7 @@ public class PrimaryMirror extends DataObject{
 		_radius = 10;
 		_thickness = 20;
 		_focalLength = 0.0;
+		_glass = "BK7";
 		_x = 200;
 		_y = 100;
 		

@@ -4,7 +4,7 @@ package com.TelescopeDesign.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import com.TelescopeDesign.datamodel.PropertiesModel;
 
@@ -15,8 +15,13 @@ public class PropertiesPanel extends JPanel{
 
 	public PropertiesPanel(PropertiesModel pMod)
 	{		
-		JTable _tab = new JTable(pMod);	
-		add(new JScrollPane(_tab));	
+		JTabbedPane propTab = new JTabbedPane();		
+		propTab.add("Tube",new JScrollPane(new JTable(pMod)));	
+		propTab.add("Primary Mirror",new JScrollPane(new JTable(pMod)));
+		propTab.add("Secondary Mirror",new JScrollPane(new JTable(pMod)));	
+		
+		
+		this.add(propTab);		
 	}
 
 }

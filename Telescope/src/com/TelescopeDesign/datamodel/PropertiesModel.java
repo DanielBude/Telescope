@@ -28,6 +28,7 @@ public class PropertiesModel extends AbstractTableModel{
 			
 			_partsList = new ArrayList<DataObject>();		
 			_partsList.add(new Tubus(10.0,20.0,1500.0));
+			//_partsList.add(new PrimaryMirror());
 	
 			createTable(_partsList);		
 		}
@@ -37,7 +38,7 @@ public class PropertiesModel extends AbstractTableModel{
 			Integer i =0;
 			  for (int p = 0; p< parts.size(); p++ ){
 				  
-				  _tableHeader =(parts.get(i).getHeader());
+				 // _tableHeader =(parts.get(i).getHeader());
 				  
 				 Hashtable<String,Double> property = parts.get(p).getData();
 				 
@@ -63,7 +64,8 @@ public class PropertiesModel extends AbstractTableModel{
 		
 		@Override
 		public String getColumnName(int columnIndex) {
-			return _tableHeader.get(columnIndex);
+			//return _tableHeader.get(columnIndex);
+			return null;
 		}
 		
 		@Override
