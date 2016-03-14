@@ -43,8 +43,8 @@ public class PropertiesModel extends AbstractTableModel{
 				 
 				 for (String key :  property.keySet())
 				 {
-					 setValueAt(key, i, 0);			  
-					 setValueAt(property.get(key),i,1);
+					 _propertyNames.add(i,key);
+					 _propertyValues.add(i,property.get(key));					 
 					 i++;
 				 }	  		  
 		  }  
@@ -98,9 +98,9 @@ public class PropertiesModel extends AbstractTableModel{
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 						
 			if(columnIndex == 0)
-			 _propertyNames.add(rowIndex, (String) aValue);
+			 _propertyNames.set(rowIndex, (String) aValue);
 			else
-			 _propertyValues.add(rowIndex, (Double) aValue);
+			 _propertyValues.set(rowIndex, (Double) aValue);
 			
 			fireTableDataChanged();			
 		}
