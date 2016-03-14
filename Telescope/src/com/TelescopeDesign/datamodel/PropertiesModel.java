@@ -2,12 +2,20 @@ package com.TelescopeDesign.datamodel;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Observable;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class PropertiesModel implements TableModel{
+public class PropertiesModel extends AbstractTableModel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	ArrayList<String> _tableHeader;
 	ArrayList<String> _propertyNames;
 	ArrayList<Double> _propertyValues;
@@ -21,7 +29,7 @@ public class PropertiesModel implements TableModel{
 			_partsList = new ArrayList<DataObject>();		
 			_partsList.add(new Tubus(10.0,20.0,1500.0));
 	
-			createTable(_partsList);				
+			createTable(_partsList);		
 		}
 	
 	private void createTable(ArrayList<DataObject> parts)
@@ -32,13 +40,11 @@ public class PropertiesModel implements TableModel{
 				  _tableHeader =(parts.get(i).getHeader());
 				  
 				 Hashtable<String,Double> property = parts.get(p).getData();
-
 				 
 				 for (String key :  property.keySet())
 				 {
-					 System.out.println(key);
-					 setValueAt(key, i, 0);			  
-					 setValueAt(property.get(key),i,1);
+					 _propertyNames.add(i,key);
+					 _propertyValues.add(i,property.get(key));					 
 					 i++;
 				 }	  		  
 		  }  
@@ -47,7 +53,7 @@ public class PropertiesModel implements TableModel{
 		
 		@Override
 		public int getRowCount() {
-			return _propertyValues.size();
+			return _propertyValues.size();		
 		}
 		
 		@Override
@@ -62,10 +68,7 @@ public class PropertiesModel implements TableModel{
 		
 		@Override
 		public Class<?> getColumnClass(int columnIndex) {
-			if(columnIndex == 0)
-				return _propertyNames.getClass();
-			else
-				return _propertyValues.getClass();			
+			return getValueAt(0,columnIndex).getClass();			
 		}
 		
 		@Override
@@ -73,16 +76,21 @@ public class PropertiesModel implements TableModel{
 			if(columnIndex == 1)
 				return true;
 			else
-				return false;			
+				return false;	
+
 		}
 		
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {	
 			
 			if(columnIndex == 0)
+			{
+				System.out.println(_propertyNames);
+				System.out.println(rowIndex);
 				return _propertyNames.get(rowIndex);
+			}
 			else
-				return  _propertyValues.get(rowIndex);
+				return _propertyValues.get(rowIndex);
 			
 		}
 		
@@ -90,21 +98,10 @@ public class PropertiesModel implements TableModel{
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 						
 			if(columnIndex == 0)
-			 _propertyNames.add(rowIndex, (String) aValue);
+			 _propertyNames.set(rowIndex, (String) aValue);
 			else
-			 _propertyValues.add(rowIndex, (Double) aValue);
-				
-		}
-		
-		@Override
-		public void addTableModelListener(TableModelListener l) {
-			// TODO Auto-generated method stub
+			 _propertyValues.set(rowIndex, (Double) aValue);
 			
+			fireTableDataChanged();			
 		}
-		
-		@Override
-		public void removeTableModelListener(TableModelListener l) {
-			// TODO Auto-generated method stub
-			
-		}	
 }
