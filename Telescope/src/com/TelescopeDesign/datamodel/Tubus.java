@@ -17,8 +17,7 @@ public class Tubus extends DataObject {
 	 */
 	public Tubus (Double diaInside, Double diaOutside, Double length) 
 	{	_header = new ArrayList<String>();
-		_header.add("Tubus Properties");
-		_header.add("");
+		_header.add("Tubus");		
 		
 		_properties = new Hashtable<String, Double>();				
 		_properties.put("Diameter inside [mm]", diaInside);

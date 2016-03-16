@@ -22,32 +22,41 @@ public class PropertiesModel extends AbstractTableModel{
 	private ArrayList<DataObject> _partsList;
 
 	public PropertiesModel(){			
-			
+		
+		  _tableHeader = new ArrayList<String>();
+		  _tableHeader.add("Telescope Type:");
+		  _tableHeader.add("Newton Reflector");
+		
 			_propertyNames 	= new ArrayList<String>(); 
 			_propertyValues = new ArrayList<Double>(); 
 			
 			_partsList = new ArrayList<DataObject>();		
 			_partsList.add(new Tubus(10.0,20.0,1500.0));
-			//_partsList.add(new PrimaryMirror());
+			_partsList.add(new PrimaryMirror());
 	
 			createTable(_partsList);		
 		}
 	
 	private void createTable(ArrayList<DataObject> parts)
-	{			
-			Integer i =0;
+	{					
+			int  i = 0;
 			  for (int p = 0; p< parts.size(); p++ ){
-				  
-				 // _tableHeader =(parts.get(i).getHeader());
+				 
+				 _propertyNames.add(i,parts.get(p).getHeader().get(0));				 
+				 _propertyValues.add(i,Double.NaN);			//TODO: Something else than NAN
+				 i++;				
 				  
 				 Hashtable<String,Double> property = parts.get(p).getData();
 				 
 				 for (String key :  property.keySet())
 				 {
 					 _propertyNames.add(i,key);
-					 _propertyValues.add(i,property.get(key));					 
+					 _propertyValues.add(i, property.get(key));	
 					 i++;
 				 }	  		  
+				 _propertyNames.add(" ");				 
+				_propertyValues.add(i,Double.NaN);	
+				 i++;
 		  }  
 	}
 		 
@@ -64,8 +73,7 @@ public class PropertiesModel extends AbstractTableModel{
 		
 		@Override
 		public String getColumnName(int columnIndex) {
-			//return _tableHeader.get(columnIndex);
-			return null;
+			return  _tableHeader.get(columnIndex);		
 		}
 		
 		@Override
