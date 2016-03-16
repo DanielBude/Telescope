@@ -19,6 +19,10 @@ public class PropertiesPanel extends JPanel{
 		propTab.add("Tube",new JScrollPane(new JTable(pMod)));	
 		propTab.add("Primary Mirror",new JScrollPane(new JTable(pMod)));
 		propTab.add("Secondary Mirror",new JScrollPane(new JTable(pMod)));	
+		propTab.add("EyePieces",new JScrollPane(new JTable(pMod)));
+		propTab.add("Mounting",new JScrollPane(new JTable(pMod)));	
+		propTab.add("Primary Mirror",new JScrollPane(new JTable(pMod)));
+		propTab.add("Secondary Mirror",new JScrollPane(new JTable(pMod)));	
 		
 		
 		this.add(propTab);		
