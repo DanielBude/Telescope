@@ -45,7 +45,7 @@ public class MainFrame extends JFrame
 		
 		//PropertyPanel
 
-		//getContentPane().add(new PropertiesPanel(pMod), BorderLayout.EAST);
+		getContentPane().add(new PropertiesPanel(pMod), BorderLayout.EAST);
 		
 		
 		
@@ -56,7 +56,7 @@ public class MainFrame extends JFrame
 	
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(partsTree);
-		getContentPane().add(scrollPane, BorderLayout.EAST);
+		getContentPane().add(scrollPane, BorderLayout.WEST);
 		
 	
 		
