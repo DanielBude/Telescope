@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.TelescopeDesign.datamodel.PropertiesModel;
+import com.TelescopeDesign.telescopes.TelescopeModel;
 
 
 
@@ -50,7 +51,8 @@ public class MainFrame extends JFrame
 		
 		
 		//Telescope Parts tree
-		JTree partsTree = new JTree();
+	    TelescopeModel teleMod = new TelescopeModel();
+		JTree partsTree = new JTree(teleMod.getTreeModel());
 	
 		
 	
