@@ -17,6 +17,7 @@ public class Controller implements TableModelListener{
 	private TelescopeModel _teleMod;
 	public MainFrame mainframe = new MainFrame(pMod);
 	public TelescopePrinting print = new TelescopePrinting();
+	
 
 	public Controller()
 	{		
@@ -32,10 +33,15 @@ public class Controller implements TableModelListener{
 
 	@Override
 	public void tableChanged(TableModelEvent e) {
+	
 		System.out.println("Do calulations");		
 		System.out.println("Do redraw");
 		System.out.println("refresh view");
 		System.out.println("=============");
+	
+		print.updateData(pMod);		
+		print.repaint();
+		
 	}
 	
 	public DefaultMutableTreeNode getTelescopeModel()

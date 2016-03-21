@@ -16,15 +16,19 @@ public class TelescopeModel{
 	public PrimaryMirror pri;
 	public SecondaryMirror sec;
 	
-	private DefaultMutableTreeNode _root, _opticalParts;
+	private DefaultMutableTreeNode _root, _tube, _primaryMirror, _secondaryMirror;
 
 	public TelescopeModel()
 	{
 
 		_root = new DefaultMutableTreeNode( "Newton Reflector" );
-		_opticalParts = new DefaultMutableTreeNode("Primary Mirror");
+		_tube = new DefaultMutableTreeNode("Tube");
+		_primaryMirror = new DefaultMutableTreeNode("Primary Mirror");
+		_secondaryMirror = new DefaultMutableTreeNode("Secondary Mirror");
 		
-		_root.add(_opticalParts);
+		_root.add(_tube);
+		_root.add(_primaryMirror);
+		_root.add(_secondaryMirror);
 		
 
 	}
