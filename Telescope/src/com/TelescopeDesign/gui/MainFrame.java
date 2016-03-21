@@ -45,7 +45,18 @@ public class MainFrame extends JFrame
 		
 		//PropertyPanel
 
-		getContentPane().add(new PropertiesPanel(pMod), BorderLayout.EAST);
+		//getContentPane().add(new PropertiesPanel(pMod), BorderLayout.EAST);
+		
+		
+		
+		//Telescope Parts tree
+		JTree partsTree = new JTree();
+	
+		
+	
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getViewport().add(partsTree);
+		getContentPane().add(scrollPane, BorderLayout.EAST);
 		
 	
 		

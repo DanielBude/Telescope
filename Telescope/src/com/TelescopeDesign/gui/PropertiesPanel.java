@@ -27,6 +27,7 @@ public class PropertiesPanel extends JPanel{
 		JTable tab = new JTable(pMod);
 		tab.setBackground(Color.cyan);
 		tab.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+	
 		
 		Font tableContentFont = new Font("Arial",Font.PLAIN,12);
 		tab.setFont(tableContentFont);
@@ -36,6 +37,8 @@ public class PropertiesPanel extends JPanel{
 	
 			
 		this.add(new JScrollPane(tab));		
+		
+		this.setSize(this.getWidth()/2, tab.getSize().height);
 	}
 
 }
