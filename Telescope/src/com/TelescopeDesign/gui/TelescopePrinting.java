@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.*;
 
-import com.TelescopeDesign.datamodel.PropertiesModel;
+import com.TelescopeDesign.datamodel.PartModel;
 
 public class TelescopePrinting extends JPanel
 {
@@ -18,7 +18,7 @@ public class TelescopePrinting extends JPanel
 	    //g.drawLine( 10, 10, 100, 50 );
 	    g.drawString("Na du alter Sack!", 50, 50);
 	  }
-	  public void updateData(PropertiesModel mod){
+	  public void updateData(PartModel mod){
 		  // make calculations for painting
 		  
 //		  mod.getPart(TelescopePart.Tube).;

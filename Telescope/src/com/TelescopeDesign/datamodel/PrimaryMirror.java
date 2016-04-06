@@ -3,39 +3,43 @@ package com.TelescopeDesign.datamodel;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class PrimaryMirror extends DataObject{
+public class PrimaryMirror extends PartModel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double _diameter;
 	private double _radius;
 	private double _thickness;
 	private double _focalLength;
-	private String _glass;
 	private double _x;
-	private double _y;
-	
-    private ArrayList<String> _header;
-	private Hashtable<String, Double> _properties;
-	
+	private double _y;	
 	
 	public PrimaryMirror()
 	{
 		_diameter = 6;
 		_radius = 10;
 		_thickness = 20;
-		_focalLength = 0.0;
-		_glass = "BK7";
+		_focalLength = 0.0;	
 		_x = 200;
 		_y = 100;
 		
-		_header = new ArrayList<String>();
-		_header.add("Primary Mirror");
-		_header.add("");
+		_tableHeader = new ArrayList<String>();
+		_tableHeader.add("Primary Mirror");
+		_tableHeader.add("");		
+			
+		_propertyNames.add("Diameter [mm]"); 
+		_propertyValues.add(_diameter);	
 		
-		_properties = new Hashtable<String, Double>();				
-		_properties.put("Diameter [mm]", _diameter);
-		_properties.put("Radius [mm]", _radius);
-		_properties.put("Thickness [mm]", _thickness);
-		_properties.put("Focal lenght [mm]", _focalLength);
+		_propertyNames.add("Radius [mm]");
+		_propertyValues.add(_radius);
+		
+		_propertyNames.add("Thickness [mm]");
+		_propertyValues.add(_thickness);
+		
+		_propertyNames.add("Focal lenght [mm]");
+		_propertyValues.add(_focalLength);
 	}
 
 
@@ -78,17 +82,10 @@ public class PrimaryMirror extends DataObject{
 		this._y = _y;
 	}
 
-
 	@Override
-	public Hashtable<String, Double> getData() {		
-		return _properties;
+	public String toString()
+	{
+		return "Primary Mirror";
+				
 	}
-
-	@Override
-	public ArrayList<String> getHeader() {
-		return _header;
-	}
-
-	
-	
 }

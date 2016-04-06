@@ -1,4 +1,4 @@
-package com.TelescopeDesign.gui;
+package com.TelescopeDesign.calc;
 
 import java.awt.Color;
 

@@ -1,42 +1,94 @@
 package com.TelescopeDesign.telescopes;
 
 
-import javax.swing.JTree;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
+import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
 import com.TelescopeDesign.datamodel.SecondaryMirror;
+import com.TelescopeDesign.datamodel.Tube;
+import com.TelescopeDesign.types.TelescopeParts;
 
 public class TelescopeModel{
+
+	Map<TelescopeParts, PartModel> _parts;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	public PrimaryMirror pri;
-	public SecondaryMirror sec;
-	
-	private DefaultMutableTreeNode _root, _tube, _primaryMirror, _secondaryMirror;
+	private DefaultMutableTreeNode _telescopeType, 
+								   _tube, 
+								   _primaryMirror,
+								   _secondaryMirror,
+								   _mounting,
+								   _optics, 
+								   _eyepieces, 
+								   _nadler, 
+								   _ploessel, 
+								   _focuser;
 
 	public TelescopeModel()
+	{	
+		_parts = new HashMap<TelescopeParts, PartModel>();
+		_parts.put(TelescopeParts.TUBE, new Tube(1.0,2.0,3.0));
+		_parts.put(TelescopeParts.PRIMARY_MIRROR, new PrimaryMirror());
+		_parts.put(TelescopeParts.SECONDARY_MIRROR, new SecondaryMirror());
+				
+		createTelescopeTree();			
+	}
+	
+	public void createTelescopeTree()
 	{
-
-		_root = new DefaultMutableTreeNode( "Newton Reflector" );
-		_tube = new DefaultMutableTreeNode("Tube");
-		_primaryMirror = new DefaultMutableTreeNode("Primary Mirror");
-		_secondaryMirror = new DefaultMutableTreeNode("Secondary Mirror");
+		_telescopeType = new DefaultMutableTreeNode( "Newton Reflector" );
+		_tube = new DefaultMutableTreeNode(_parts.get(TelescopeParts.TUBE));
+		_primaryMirror = new DefaultMutableTreeNode(_parts.get(TelescopeParts.PRIMARY_MIRROR));
+		_secondaryMirror = new DefaultMutableTreeNode(_parts.get(TelescopeParts.SECONDARY_MIRROR));
+		_optics = new DefaultMutableTreeNode("Optics");
+		_mounting = new DefaultMutableTreeNode("Mounting");
 		
-		_root.add(_tube);
-		_root.add(_primaryMirror);
-		_root.add(_secondaryMirror);
+		_eyepieces = new DefaultMutableTreeNode("Eyepieces");
+		_nadler = new DefaultMutableTreeNode("Nadler");
+		_ploessel = new DefaultMutableTreeNode("Plössel");
+		_focuser = new DefaultMutableTreeNode("Focuser");		
+//		
+		_optics.add(_tube);
+		_optics.add(_primaryMirror);
+		_optics.add(_secondaryMirror);
+		_telescopeType.add(_optics);
 		
+		_telescopeType.add(_focuser);
+	
+		
+		_telescopeType.add(_eyepieces);		
+		_eyepieces.add(_nadler);
+		_eyepieces.add(_ploessel);
 
+		_telescopeType.add(_mounting);	
 	}
 	
 	
 	public DefaultMutableTreeNode getTreeModel(){
-		
-		return _root;
+		return _telescopeType;
 	}
 	
+	/**
+	 * Returns the data model of the requested part of the telescope
+	 * @param part
+	 * @return PartModel
+	 */
+	public PartModel getPartModel(TreePath path) {
+				
+		for(TelescopeParts p : _parts.keySet())
+		{
+			if(_parts.get(p).toString().equals(path.getLastPathComponent().toString()))			
+				return _parts.get(p);	
+		}
+		
+		return null;
+	}	
+	
+	public PartModel getPartModel(TelescopeParts part)
+	{
+		return _parts.get(part);
+	}
 }

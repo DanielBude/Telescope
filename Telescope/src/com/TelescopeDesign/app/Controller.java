@@ -2,33 +2,36 @@ package com.TelescopeDesign.app;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
-import com.TelescopeDesign.datamodel.PropertiesModel;
+import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.gui.MainFrame;
 import com.TelescopeDesign.gui.TelescopePrinting;
 import com.TelescopeDesign.telescopes.TelescopeModel;
 
 
-public class Controller implements TableModelListener{
+public class Controller implements TableModelListener,TreeSelectionListener {
 	
-	public PropertiesModel pMod = new PropertiesModel();
-	private TelescopeModel _teleMod;
-	public MainFrame mainframe = new MainFrame(pMod);
+	public PartModel pMod = new PartModel();
+	public TelescopeModel _model = new TelescopeModel();
+	
+	public MainFrame mainframe = new MainFrame(_model);
 	public TelescopePrinting print = new TelescopePrinting();
 	
 
 	public Controller()
 	{		
-		
-		_teleMod = new TelescopeModel();
 		mainframe.getBluePrint().add(print);
 		mainframe.getBluePrint().repaint();
 		mainframe.repaint();
 		mainframe.setVisible(true);
 			
-		pMod.addTableModelListener(this);		
+		pMod.addTableModelListener(this);	
+		mainframe.getPartsTree().addTreeSelectionListener(this);
 	}
 
 	@Override
@@ -43,9 +46,11 @@ public class Controller implements TableModelListener{
 		print.repaint();
 		
 	}
-	
-	public DefaultMutableTreeNode getTelescopeModel()
-	{
-		return _teleMod.getTreeModel();
+
+	/** This method makes the table visible corresponding to the selection on the Telescope tree.
+	 */
+	@Override
+	public void valueChanged(TreeSelectionEvent event) {
+	  mainframe.updatePropertyTable(event.getPath());	  
 	}
 }

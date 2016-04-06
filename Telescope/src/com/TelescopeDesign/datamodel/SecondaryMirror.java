@@ -1,14 +1,30 @@
 package com.TelescopeDesign.datamodel;
 
-public class SecondaryMirror {
+import java.util.ArrayList;
+
+public class SecondaryMirror extends PartModel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double _radius;
 	private double _offset;
 
 	public SecondaryMirror()
 	{
-		_radius = 4;
-		_offset = 0;
+		_radius = 4.0;
+		_offset = 0.0;
+		
+		_tableHeader = new ArrayList<String>();
+		_tableHeader.add("Secondary Mirror");
+		_tableHeader.add("");
+		
+		_propertyNames.add("Radius [mm]"); 
+		_propertyValues.add(_radius);	
+		
+		_propertyNames.add("Offset [mm]");
+		_propertyValues.add(_offset);		
 	}
 
 	public double getRadius() {
@@ -25,6 +41,12 @@ public class SecondaryMirror {
 
 	public void setOffset(double _offset) {
 		this._offset = _offset;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Secondary Mirror";				
 	}
 	
 }
