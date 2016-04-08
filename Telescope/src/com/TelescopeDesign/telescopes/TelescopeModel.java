@@ -27,6 +27,11 @@ public class TelescopeModel{
 								   _ploessel, 
 								   _focuser;
 
+	/**
+	 * Creates a model of a newtonian telescope with all relevant optical and mechanical components
+	 * The model contains objects of the parts and its properties. The parts are organized in a data structure
+	 * of a tree.
+	 */
 	public TelescopeModel()
 	{	
 		_parts = new HashMap<TelescopeParts, PartModel>();
@@ -37,7 +42,7 @@ public class TelescopeModel{
 		createTelescopeTree();			
 	}
 	
-	public void createTelescopeTree()
+	private void createTelescopeTree()
 	{
 		_telescopeType = new DefaultMutableTreeNode( "Newton Reflector" );
 		_tube = new DefaultMutableTreeNode(_parts.get(TelescopeParts.TUBE));
@@ -87,6 +92,11 @@ public class TelescopeModel{
 		return null;
 	}	
 	
+	/**
+	 * Returns the data model of the requested part by the given TelescopePart enumeration
+	 * @param part 
+	 * @return PartModel
+	 */
 	public PartModel getPartModel(TelescopeParts part)
 	{
 		return _parts.get(part);

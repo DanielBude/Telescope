@@ -1,7 +1,10 @@
 package com.TelescopeDesign.types;
 
-public class Property {
-
+/**
+ * @author Michael
+ * This class contains the physical values of different parts of the telescope
+ */
+public class Property { 
 	String _propertyName;
 	Double _propertyValue;
 	
@@ -29,7 +32,5 @@ public class Property {
 	public void setName(String value)
 	{
 		_propertyName = value;
-	}
-	
-	
+	}	
 }
