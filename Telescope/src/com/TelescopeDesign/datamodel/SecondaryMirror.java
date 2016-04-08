@@ -1,6 +1,6 @@
 package com.TelescopeDesign.datamodel;
 
-import java.util.ArrayList;
+import com.TelescopeDesign.types.Property;
 
 public class SecondaryMirror extends PartModel{
 	
@@ -13,40 +13,21 @@ public class SecondaryMirror extends PartModel{
 
 	public SecondaryMirror()
 	{
+		_partName = "Secondary Mirror";
 		_radius = 4.0;
 		_offset = 0.0;
 		
-		_tableHeader = new ArrayList<String>();
-		_tableHeader.add("Secondary Mirror");
+		_tableHeader.add(_partName);
 		_tableHeader.add("");
-		
-		_propertyNames.add("Radius [mm]"); 
-		_propertyValues.add(_radius);	
-		
-		_propertyNames.add("Offset [mm]");
-		_propertyValues.add(_offset);		
-	}
 
-	public double getRadius() {
-		return _radius;
-	}
-
-	public void setRadius(double _radius) {
-		this._radius = _radius;
-	}
-
-	public double getOffset() {
-		return _offset;
-	}
-
-	public void setOffset(double _offset) {
-		this._offset = _offset;
+		_property.add(new Property("Radius [mm]", _radius));
+		_property.add(new Property("Offset [mm]", _offset));
 	}
 	
 	@Override
 	public String toString()
 	{
-		return "Secondary Mirror";				
+		return _partName;				
 	}
 	
 }

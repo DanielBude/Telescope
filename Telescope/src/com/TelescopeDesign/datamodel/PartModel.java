@@ -1,9 +1,8 @@
 package com.TelescopeDesign.datamodel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.swing.table.AbstractTableModel;
+import com.TelescopeDesign.types.Property;
 
 public class PartModel extends AbstractTableModel{
 
@@ -12,20 +11,21 @@ public class PartModel extends AbstractTableModel{
 	 */
 	private static final long serialVersionUID = 1L;	
 	ArrayList<String> _tableHeader;
+	String _partName;
 	ArrayList<String> _propertyNames;
 	ArrayList<Double> _propertyValues;
 	
-	HashMap<Integer, HashMap<String, Double>> _property = new HashMap<Integer,HashMap<String, Double>>();
-
+	ArrayList<Property> _property;
+	
 	public PartModel(){	
 		
-		  _propertyNames 	= new ArrayList<String>(); 
-		  _propertyValues = new ArrayList<Double>();		  
+		  _tableHeader = new ArrayList<String>();
+		  _property = new ArrayList<Property>();		  
 	}
 		
 		@Override
 		public int getRowCount() {
-			return _propertyValues.size();		
+			return _property.size();		
 		}
 		
 		@Override
@@ -39,7 +39,7 @@ public class PartModel extends AbstractTableModel{
 		}
 		
 		@Override
-		public Class<?> getColumnClass(int columnIndex) {
+		public Class<?> getColumnClass(int columnIndex) {			
 			return getValueAt(0,columnIndex).getClass();			
 		}
 		
@@ -55,19 +55,18 @@ public class PartModel extends AbstractTableModel{
 		public Object getValueAt(int rowIndex, int columnIndex) {	
 			
 			if(columnIndex == 0)
-				return _propertyNames.get(rowIndex);
+				return _property.get(rowIndex).getName();
 			else
-				return _propertyValues.get(rowIndex);			
+				return _property.get(rowIndex).getValue();	
 		}
 		
 		@Override
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-						
+		
 			if(columnIndex == 0)
-			 _propertyNames.set(rowIndex, (String) aValue);			
+				 _property.get(rowIndex).setName((String) aValue);	
 			else
-			 _propertyValues.set(rowIndex, (Double) aValue);
-			
+				 _property.get(rowIndex).setValue((Double) aValue);
 			fireTableDataChanged();			
 		}		
 		
@@ -75,5 +74,10 @@ public class PartModel extends AbstractTableModel{
 		public String toString(){
 			return "Part Name";			
 		}		
+		
+		public ArrayList<Property> getProperties()
+		{
+			return _property;
+		}
 	
 }

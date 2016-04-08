@@ -1,8 +1,6 @@
 package com.TelescopeDesign.datamodel;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-
+import com.TelescopeDesign.types.Property;
 
 public class Tube extends PartModel {
 
@@ -18,19 +16,14 @@ public class Tube extends PartModel {
 	 * @param length
 	 */
 	public Tube (Double diaInside, Double diaOutside, Double length) 
-	{			
-		_tableHeader = new ArrayList<String>();
-		_tableHeader.add("Tube");
+	{		
+		_partName = "Tube";
+		_tableHeader.add(_partName);
 		_tableHeader.add("");
-		
-		_propertyNames.add("Diameter inside [mm]"); 
-		_propertyValues.add(diaInside);	
-		
-		_propertyNames.add("Diameter outside [mm]");
-		_propertyValues.add(diaOutside);
-		
-		_propertyNames.add("length [mm]");
-		_propertyValues.add(length);		
+			
+		_property.add(new Property("Diameter inside [mm]", diaInside));
+		_property.add(new Property("Diameter outside [mm]", diaOutside));
+		_property.add(new Property("Length [mm]", length));		
 	}	
 
 	
