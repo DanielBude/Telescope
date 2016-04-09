@@ -35,7 +35,8 @@ public class PropertiesPanel extends JPanel{
 	
 	public void changeTable(TreePath path)
 	{
-		_tab.setModel(_model.getPartModel(path));
+		if(_model.getPartModel(path) != null)
+			_tab.setModel(_model.getPartModel(path));
 	}
 	
 	private void setStyle()

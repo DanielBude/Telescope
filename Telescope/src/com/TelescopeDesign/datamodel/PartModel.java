@@ -12,9 +12,7 @@ public class PartModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;	
 	ArrayList<String> _tableHeader;
 	String _partName;
-	ArrayList<String> _propertyNames;
-	ArrayList<Double> _propertyValues;
-	
+
 	ArrayList<Property> _property;
 	
 	public PartModel(){	

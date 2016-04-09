@@ -3,6 +3,7 @@ package com.TelescopeDesign.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -57,11 +58,7 @@ public class MainFrame extends JFrame
 		_partsTree = new JTree(_model.getTreeModel());
 		setStyle();
 		
-		Border eB = new EmptyBorder(0,5,0,5);
-		//Border eB =BorderFactory.createMatteBorder(0, 5, 0, 5, Color.BLACK);
-		//Border eB =BorderFactory.createLineBorder(Color.BLACK, 5);
-		
-		
+		Border eB = new EmptyBorder(0,5,0,5);		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(_partsTree);
 	    scrollPane.setBorder(eB);
@@ -93,18 +90,48 @@ public class MainFrame extends JFrame
 	    _southPanel.add(new JScrollPane(abberationsTab), BorderLayout.EAST);
 		_southPanel.add(drawingPanel, BorderLayout.CENTER);
 		
-	//	getContentPane().add(new JScrollPane(abberationsTab), BorderLayout.EAST);
 				
-				
+		//General Telescope property panel
+		String[] genPropHeader = {"General Telescope Properties" ,""};
+		DefaultTableModel genPropModel = new  DefaultTableModel(genPropHeader,3);
+		JTable generalProperties = new JTable(genPropModel);
+		JScrollPane scrPne = new JScrollPane(generalProperties);
+		
+		//scrPne.setPreferredSize(new Dimension(500,50));
+		
+		
+		
+		JPanel tab = new JPanel();		
+		BorderLayout bL = new BorderLayout();
+		
+		tab.setLayout(bL);
+		Color background = new Color(38,104,215);
+		Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
+		Border emptyBorder = BorderFactory.createEmptyBorder();
+		Font headerFont = new Font("Arial", Font.BOLD, 14);
+		generalProperties.setBorder(whiteBorder);
+		generalProperties.getTableHeader().setBackground(background);
+		generalProperties.getTableHeader().setFont(headerFont);
+		generalProperties.getTableHeader().setForeground(Color.WHITE);
+		generalProperties.setForeground(Color.WHITE);
+		generalProperties.setGridColor(Color.WHITE);
+		tab.setForeground(background);
+		//tab.setBorder(emptyBorder);
+		generalProperties.setBackground(background);	
+		generalProperties.setFillsViewportHeight(true);
+		
+		scrPne.setBorder(emptyBorder);
+		scrPne.setBackground(background);
+		scrPne.setForeground(background);
+		
+		
+		
 		//Visualisation Panel
-		
-		JPanel tab = new JPanel();
-		//tab.setTabPlacement(JTabbedPane.BOTTOM);
-		tab.add(new BluePrint());
-		//tab.add("Raytracing",new Raytracing());		
-		
+		tab.add(bp,BorderLayout.CENTER);
+		tab.add(scrPne, BorderLayout.EAST);
+	
 		getContentPane().add(_southPanel ,BorderLayout.SOUTH);
-		getContentPane().add(bp, BorderLayout.CENTER);
+		getContentPane().add(tab, BorderLayout.CENTER);
 		getContentPane().add(toolbar, BorderLayout.NORTH);
 		getContentPane().add(_westPanel, BorderLayout.WEST);
 				

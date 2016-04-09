@@ -1,8 +1,10 @@
 package com.TelescopeDesign.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 
@@ -16,7 +18,9 @@ public class BluePrint extends JPanel{
 	{
 		repaint();
 		//Define Backgroudcolor
-		setBackground(Color.BLUE);
+		Color background = new Color(38,104,215);
+		setBackground(background);
+
 	}
 	
 	public void paintComponent(Graphics g){
