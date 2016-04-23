@@ -1,6 +1,7 @@
 package com.TelescopeDesign.telescopes;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,11 +11,13 @@ import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
 import com.TelescopeDesign.datamodel.SecondaryMirror;
 import com.TelescopeDesign.datamodel.Tube;
+import com.TelescopeDesign.types.Property;
 import com.TelescopeDesign.types.TelescopeParts;
 
 public class TelescopeModel{
 
 	Map<TelescopeParts, PartModel> _parts;
+	ArrayList<Property> _generalTelescopeProperties;
 	
 	private DefaultMutableTreeNode _telescopeType, 
 								   _tube, 
@@ -38,6 +41,13 @@ public class TelescopeModel{
 		_parts.put(TelescopeParts.TUBE, new Tube(1.0,2.0,3.0));
 		_parts.put(TelescopeParts.PRIMARY_MIRROR, new PrimaryMirror());
 		_parts.put(TelescopeParts.SECONDARY_MIRROR, new SecondaryMirror());
+		
+		_generalTelescopeProperties = new ArrayList<Property>();
+		_generalTelescopeProperties.add(new Property("Focal ratio [f/1]", 0.0));
+		_generalTelescopeProperties.add(new Property("Aperture ['']", 0.0));
+		_generalTelescopeProperties.add(new Property("Obstruction [%]", 0.0));
+		_generalTelescopeProperties.add(new Property("Image field size []", 0.0));		
+		
 				
 		createTelescopeTree();			
 	}
@@ -100,5 +110,9 @@ public class TelescopeModel{
 	public PartModel getPartModel(TelescopeParts part)
 	{
 		return _parts.get(part);
+	}
+	
+	public void setTelescopeProperty(String name, Double value){
+		//TODO
 	}
 }

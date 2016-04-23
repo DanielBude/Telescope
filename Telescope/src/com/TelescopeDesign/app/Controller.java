@@ -16,41 +16,37 @@ import com.TelescopeDesign.telescopes.TelescopeModel;
 
 public class Controller implements TableModelListener,TreeSelectionListener {
 	
-	public PartModel pMod = new PartModel();
+	public PartModel _pMod = new PartModel();
 	public TelescopeModel _model = new TelescopeModel();
 	
-	public MainFrame mainframe = new MainFrame(_model);
+	public MainFrame _mainframe;
 	public TelescopePrinting print = new TelescopePrinting();
 	
 
 	public Controller()
 	{		
-		mainframe.getBluePrint().add(print);
-		mainframe.getBluePrint().repaint();
-		mainframe.repaint();
-		mainframe.setVisible(true);
-			
-		pMod.addTableModelListener(this);	
-		mainframe.getPartsTree().addTreeSelectionListener(this);
+		_mainframe = new MainFrame(this);			
+		_pMod.addTableModelListener(this);	
+		_mainframe.getPartsTree().addTreeSelectionListener(this);
 	}
 
 	@Override
 	public void tableChanged(TableModelEvent e) {
-	
-		System.out.println("Do calulations");		
-		System.out.println("Do redraw");
-		System.out.println("refresh view");
-		System.out.println("=============");
-	
-		print.updateData(pMod);		
-		print.repaint();
 		
+		print.updateData(_pMod);		
+		print.repaint();		
 	}
 
 	/** This method makes the table visible corresponding to the selection on the Telescope tree.
 	 */
 	@Override
 	public void valueChanged(TreeSelectionEvent event) {
-	  mainframe.updatePropertyTable(event.getPath());	  
+	  _mainframe.updatePropertyTable(event.getPath());	  
+	}
+	
+	
+	public TelescopeModel getTelescopeModel()
+	{
+		return _model;
 	}
 }

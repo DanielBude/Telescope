@@ -12,16 +12,16 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreePath;
 
-import com.TelescopeDesign.calc.Raytracing;
-import com.TelescopeDesign.datamodel.PartModel;
+import com.TelescopeDesign.app.Controller;
+import com.TelescopeDesign.blueprint.NewBluePrint;
 import com.TelescopeDesign.telescopes.TelescopeModel;
-import com.TelescopeDesign.types.TelescopeParts;
+
 
 
 
 public class MainFrame extends JFrame
 {
-	private BluePrint bp = new BluePrint();
+	private NewBluePrint bp;
 		/**
 	 * 
 	 */
@@ -32,23 +32,17 @@ public class MainFrame extends JFrame
 	PropertiesPanel _propPanel;
 	TelescopeModel _model;
     
-	public MainFrame(TelescopeModel model)
+	public MainFrame(Controller _ctrl)
 	{	
-		_model = model;
+		_model = _ctrl.getTelescopeModel();
+		
+		bp = new NewBluePrint(_model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
 		this.setTitle("Telescope Designer");
 			
-		JMenuBar  menuBar = new JMenuBar();	
-		this.setJMenuBar(menuBar);
-		
-		JMenu projectMenu = new JMenu("Project");
-		projectMenu.add(new JMenuItem("New..."));
-		projectMenu.add(new JMenuItem("Save..."));
-		projectMenu.add(new JMenuItem("Exit..."));		
-		
-		menuBar.add(projectMenu);			
-		
+		//create MenuBar
+		this.setJMenuBar(new Menu());
 		
 		//Placeholder for a Toolbar
 		JPanel toolbar = new JPanel();				
@@ -83,7 +77,7 @@ public class MainFrame extends JFrame
 		//Abberation Panel				
 		String[] abbHeader = {"Aberrations","Value"};
 		
-		DefaultTableModel abbModel = new  DefaultTableModel(abbHeader,3);
+		DefaultTableModel abbModel = new  DefaultTableModel(abbHeader,5);
 		JTable abberationsTab = new JTable(abbModel);
 		
 		_southPanel.setLayout(new BorderLayout());
@@ -96,9 +90,6 @@ public class MainFrame extends JFrame
 		DefaultTableModel genPropModel = new  DefaultTableModel(genPropHeader,3);
 		JTable generalProperties = new JTable(genPropModel);
 		JScrollPane scrPne = new JScrollPane(generalProperties);
-		
-		//scrPne.setPreferredSize(new Dimension(500,50));
-		
 		
 		
 		JPanel tab = new JPanel();		
@@ -124,8 +115,6 @@ public class MainFrame extends JFrame
 		scrPne.setBackground(background);
 		scrPne.setForeground(background);
 		
-		
-		
 		//Visualisation Panel
 		tab.add(bp,BorderLayout.CENTER);
 		tab.add(scrPne, BorderLayout.EAST);
@@ -149,7 +138,7 @@ public class MainFrame extends JFrame
 		_propPanel.changeTable(path);
 	}	
 
-	public BluePrint getBluePrint()
+	public NewBluePrint getBluePrint()
 	{
 		return bp;
 	}

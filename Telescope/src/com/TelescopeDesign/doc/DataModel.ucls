@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.TelescopeDesign.datamodel.PrimaryMirror" project="Telescope" 
     file="/Telescope/src/com/TelescopeDesign/datamodel/PrimaryMirror.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="208" y="626"/>    
+    <position height="-1" width="-1" x="297" y="702"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.TelescopeDesign.datamodel.SecondaryMirror" project="Telescope" 
     file="/Telescope/src/com/TelescopeDesign/datamodel/SecondaryMirror.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="549" y="743"/>    
+    <position height="-1" width="-1" x="552" y="672"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.TelescopeDesign.datamodel.Tube" project="Telescope" 
     file="/Telescope/src/com/TelescopeDesign/datamodel/Tube.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="851" y="635"/>    
+    <position height="-1" width="-1" x="763" y="653"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.TelescopeDesign.types.Property" project="Telescope" 
     file="/Telescope/src/com/TelescopeDesign/types/Property.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="216" y="252"/>    
+    <position height="-1" width="-1" x="245" y="359"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

@@ -1,16 +1,17 @@
 package com.TelescopeDesign.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 
 
 public class BluePrint extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8027511465149622621L;
 	// Hier sollten die Entsprechenden Objekte gespeichert sein
 	PrimaryMirrorVisualModel priMirror = new PrimaryMirrorVisualModel();
 	
