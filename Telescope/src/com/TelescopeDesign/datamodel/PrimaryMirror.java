@@ -1,5 +1,6 @@
 package com.TelescopeDesign.datamodel;
 
+import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 
 public class PrimaryMirror extends PartModel{
@@ -7,7 +8,7 @@ public class PrimaryMirror extends PartModel{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 	private String _partName;
 	private double _diameter;
 	private double _radius;
@@ -25,10 +26,10 @@ public class PrimaryMirror extends PartModel{
 		_tableHeader.add(_partName);
 		_tableHeader.add("");		
 
-		_property.add(new Property("Diameter [mm]", _diameter));
-		_property.add(new Property("Radius [mm]", _radius));
-		_property.add(new Property("Thickness [mm]", _thickness));
-		_property.add(new Property("Focal length [mm]", _focalLength));		
+		_property.add(new Property(Parameter.DIAMETER,"Diameter [mm]", _diameter));
+		_property.add(new Property(Parameter.RADIUS, "Radius [mm]", _radius));
+		_property.add(new Property(Parameter.THICKNESS, "Thickness [mm]", _thickness));
+		_property.add(new Property(Parameter.FOCAL_LENGTH,"Focal length [mm]", _focalLength));		
 	}
 
 	@Override

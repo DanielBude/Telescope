@@ -11,6 +11,7 @@ import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
 import com.TelescopeDesign.datamodel.SecondaryMirror;
 import com.TelescopeDesign.datamodel.Tube;
+import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 import com.TelescopeDesign.types.TelescopeParts;
 
@@ -43,10 +44,10 @@ public class TelescopeModel{
 		_parts.put(TelescopeParts.SECONDARY_MIRROR, new SecondaryMirror());
 		
 		_generalTelescopeProperties = new ArrayList<Property>();
-		_generalTelescopeProperties.add(new Property("Focal ratio [f/1]", 0.0));
-		_generalTelescopeProperties.add(new Property("Aperture ['']", 0.0));
-		_generalTelescopeProperties.add(new Property("Obstruction [%]", 0.0));
-		_generalTelescopeProperties.add(new Property("Image field size []", 0.0));		
+		_generalTelescopeProperties.add(new Property(Parameter.FOCAL_RATIO, "Focal ratio [f/1]", 0.0));
+		_generalTelescopeProperties.add(new Property(Parameter.APERTURE, "Aperture ['']", 0.0));
+		_generalTelescopeProperties.add(new Property(Parameter.OBSTRUCTION, "Obstruction [%]", 0.0));
+		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));		
 		
 				
 		createTelescopeTree();			

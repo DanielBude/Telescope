@@ -4,14 +4,22 @@ package com.TelescopeDesign.types;
  * @author Michael
  * This class contains the physical values of different parts of the telescope
  */
-public class Property { 
+public class Property {
+	
+	Parameter _propertyKey;
 	String _propertyName;
 	Double _propertyValue;
 	
-	public Property(String name, Double value)
+	public Property(Parameter key,  String name, Double value)
 	{
+		_propertyKey = key;
 		_propertyName = name;
 		_propertyValue = value;
+	}
+	
+	public Parameter getKey()
+	{
+		return _propertyKey;
 	}
 	
 	public Double getValue()
@@ -33,4 +41,6 @@ public class Property {
 	{
 		_propertyName = value;
 	}	
+	
+	
 }

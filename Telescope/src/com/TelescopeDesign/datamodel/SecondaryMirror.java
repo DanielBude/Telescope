@@ -1,5 +1,6 @@
 package com.TelescopeDesign.datamodel;
 
+import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 
 public class SecondaryMirror extends PartModel{
@@ -20,8 +21,8 @@ public class SecondaryMirror extends PartModel{
 		_tableHeader.add(_partName);
 		_tableHeader.add("");
 
-		_property.add(new Property("Radius [mm]", _radius));
-		_property.add(new Property("Offset [mm]", _offset));
+		_property.add(new Property(Parameter.RADIUS,"Radius [mm]", _radius));
+		_property.add(new Property(Parameter.OFFSET,"Offset [mm]", _offset));
 	}
 	
 	@Override
@@ -29,5 +30,5 @@ public class SecondaryMirror extends PartModel{
 	{
 		return _partName;				
 	}
-	
+
 }

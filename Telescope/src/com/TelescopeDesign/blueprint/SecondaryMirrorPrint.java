@@ -1,45 +1,22 @@
 package com.TelescopeDesign.blueprint;
 
 import java.awt.geom.Rectangle2D;
-import java.util.EnumSet;
 
-import com.TelescopeDesign.datamodel.PartModel;
-import com.TelescopeDesign.types.Parameter;
+public class SecondaryMirrorPrint extends Rectangle2D{
 
-public class TubePrint extends Rectangle2D{
-
-	double _diaInside;
-	double _diaOutside;
-	double _length;
 	double _hight;
 	double _width;
 	double _x;
 	double _y;
 	
-	public TubePrint(PartModel data)
+	
+	public SecondaryMirrorPrint()
 	{
 	 _x = 0;
 	 _y = 0;
 	 
-	 EnumSet<Parameter> parameterKeys = data.getParameters();
-	 
-	 for(Parameter key : parameterKeys)
-	 {		 
-		 for(int i=0; i< data.getProperties().size(); i++ )
-		 {
-			 if(key.equals(Parameter.DIAMETER_INSIDE))
-				 _diaInside = data.getProperties().get(i).getValue();
-				 
-			 if(key.equals(Parameter.DIAMETER_OUTSIDE))
-				 _diaOutside = data.getProperties().get(i).getValue();
-				 
-			 if(key.equals(Parameter.LENGTH))
-				 _length = data.getProperties().get(i).getValue();;
-		 }		 
-	 }
-	 
-	 _hight = 300;
-	 _width = 1000;
+	 _hight = 50;
+	 _width = 20;
 	 	 
 	}
 	
@@ -92,13 +69,9 @@ public class TubePrint extends Rectangle2D{
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-	
-	public void updateData()
-	{
-		
-	}
+
 
 	public void setReference(double x, double y) {
 		

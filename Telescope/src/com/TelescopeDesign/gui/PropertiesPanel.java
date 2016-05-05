@@ -35,6 +35,7 @@ public class PropertiesPanel extends JPanel{
 	
 	public void changeTable(TreePath path)
 	{
+		
 		if(_model.getPartModel(path) != null)
 			_tab.setModel(_model.getPartModel(path));
 	}
@@ -43,9 +44,11 @@ public class PropertiesPanel extends JPanel{
 	{	
 		Color tableBackground = new Color(250,250,250);
 		
+		_tab.setDefaultRenderer(_tab.getClass(), new DataCellRenderer());
 		Font tableContentFont = new Font("Arial",Font.PLAIN,12);
 		_tab.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));	
 		_tab.setBackground(tableBackground);
 		_tab.setFont(tableContentFont);	
+		
 	}
 }

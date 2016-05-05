@@ -74,4 +74,10 @@ public class OpticalAxis extends Line2D{
 		_endX = (int) x2;
 		_endY = (int)y2;
 	}
+	
+	public void setReference(double x, double y) {
+		
+		_startY  = (int)(_startX +y);
+		_startX  = (int) x;		
+	}
 }

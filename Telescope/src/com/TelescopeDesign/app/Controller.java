@@ -32,9 +32,8 @@ public class Controller implements TableModelListener,TreeSelectionListener {
 
 	@Override
 	public void tableChanged(TableModelEvent e) {
-		
-		print.updateData(_pMod);		
-		print.repaint();		
+	
+		_mainframe.getBluePrint().repaint();
 	}
 
 	/** This method makes the table visible corresponding to the selection on the Telescope tree.

@@ -1,14 +1,20 @@
 package com.TelescopeDesign.datamodel;
 
-import com.TelescopeDesign.types.Property;
+import java.util.EnumSet;
 
-public class Tube extends PartModel {
+import com.TelescopeDesign.types.Parameter;
+import com.TelescopeDesign.types.Property;
+import com.kuka.TelescopeDesign.converter.IConvertable;
+
+public class Tube extends PartModel implements IConvertable {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	EnumSet<Parameter> _parameterSet;
 	
+			
 	/**
 	 * Creates a tubus which is defined by diameter inside, outside and its´s length
 	 * @param diaInside
@@ -20,17 +26,45 @@ public class Tube extends PartModel {
 		_partName = "Tube";
 		_tableHeader.add(_partName);
 		_tableHeader.add("");
-			
-		_property.add(new Property("Diameter inside [mm]", diaInside));
-		_property.add(new Property("Diameter outside [mm]", diaOutside));
-		_property.add(new Property("Length [mm]", length));		
+		
+		_parameterSet = EnumSet.of(Parameter.DIAMETER_INSIDE, Parameter.DIAMETER_OUTSIDE, Parameter.LENGTH);
+					
+		_property.add(new Property(Parameter.DIAMETER_INSIDE, "Diameter inside [mm]", diaInside));
+		_property.add(new Property(Parameter.DIAMETER_OUTSIDE,"Diameter outside [mm]", diaOutside));
+		_property.add(new Property(Parameter.LENGTH,"Length [mm]", length));		
 	}	
-
 	
 	@Override
 	public String toString()
 	{
 		return "Tube";				
+	}
+
+	@Override
+	public EnumSet<Parameter> getParameters() {
+		return _parameterSet;
+	}
+
+	@Override
+	public Double getHeight() {
+		
+		for(Property prop: _property)
+		{
+			if(prop.getKey().equals(Parameter.DIAMETER_OUTSIDE))
+				return prop.getValue();
+		}
+		return null;
+	}
+
+	@Override
+	public Double getWidth() {
+		
+		for(Property prop: _property)
+		{
+			if(prop.getKey().equals(Parameter.LENGTH))
+				return prop.getValue();
+		}
+		return null;
 	}
 }
 
