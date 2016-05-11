@@ -37,10 +37,7 @@ public class TelescopeModel{
 	 * of a tree.
 	 */
 	public TelescopeModel()
-	{	
-		
-		
-		
+	{			
 		_parts = new HashMap<TelescopeParts, PartModel>();
 		_parts.put(TelescopeParts.TUBE, new Tube(1.0,2.0,3.0));
 		_parts.put(TelescopeParts.PRIMARY_MIRROR, new PrimaryMirror());
@@ -51,9 +48,7 @@ public class TelescopeModel{
 		_generalTelescopeProperties.add(new Property(Parameter.APERTURE, "Aperture ['']", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.OBSTRUCTION, "Obstruction [%]", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));		
-		
-		
-				
+						
 		createTelescopeTree();				
 				
 	}
