@@ -38,6 +38,9 @@ public class TelescopeModel{
 	 */
 	public TelescopeModel()
 	{	
+		
+		
+		
 		_parts = new HashMap<TelescopeParts, PartModel>();
 		_parts.put(TelescopeParts.TUBE, new Tube(1.0,2.0,3.0));
 		_parts.put(TelescopeParts.PRIMARY_MIRROR, new PrimaryMirror());
