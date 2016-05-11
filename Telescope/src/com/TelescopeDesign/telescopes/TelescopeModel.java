@@ -51,8 +51,7 @@ public class TelescopeModel{
 		
 				
 		createTelescopeTree();		
-		
-		//Just a senseless comment
+
 		
 	}
 	
