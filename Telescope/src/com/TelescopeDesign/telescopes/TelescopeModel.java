@@ -53,6 +53,8 @@ public class TelescopeModel{
 		createTelescopeTree();		
 
 		
+		
+		
 	}
 	
 	private void createTelescopeTree()
