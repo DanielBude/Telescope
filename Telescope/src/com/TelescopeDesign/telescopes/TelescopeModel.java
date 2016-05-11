@@ -50,7 +50,10 @@ public class TelescopeModel{
 		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));		
 		
 				
-		createTelescopeTree();			
+		createTelescopeTree();		
+		
+		//Just a senseless comment
+		
 	}
 	
 	private void createTelescopeTree()
