@@ -114,6 +114,6 @@ public class TelescopeModel{
 	}
 	
 	public void setTelescopeProperty(String name, Double value){
-		//TODO
+		//TODO: update property
 	}
 }
