@@ -25,7 +25,6 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 		
 		return null;
 	}
-
 	@Override
 	public Rectangle2D createUnion(Rectangle2D arg0) {
 		// TODO Auto-generated method stub
@@ -34,7 +33,7 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 
 	@Override
 	public int outcode(double arg0, double arg1) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
