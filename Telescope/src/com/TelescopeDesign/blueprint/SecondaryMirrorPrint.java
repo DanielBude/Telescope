@@ -22,7 +22,7 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 	
 	@Override
 	public Rectangle2D createIntersection(Rectangle2D arg0) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
