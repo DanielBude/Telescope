@@ -15,7 +15,7 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 	 _x = 0;
 	 _y = 0;
 	 
-	 _hight = 50;
+	 _hight = 55;
 	 _width = 20;
 	 	 
 	}
@@ -33,8 +33,7 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 
 	@Override
 	public int outcode(double arg0, double arg1) {
-		
-		return 0;
+				return 0;
 	}
 
 	@Override
