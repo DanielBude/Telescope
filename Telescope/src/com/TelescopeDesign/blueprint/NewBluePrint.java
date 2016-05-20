@@ -11,6 +11,7 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
@@ -30,6 +31,9 @@ public class NewBluePrint extends JPanel{
 	OpticalAxis _opticalAxis, _opticalSecMirrorAxis;
 	TubePrint _tube;
 	SecondaryMirrorPrint _secMirror;
+	
+	DecimalFormat _df2 = new DecimalFormat( "#,###,###,##0.0" );
+	
 	
 	public NewBluePrint(TelescopeModel model)
 	{
@@ -72,8 +76,9 @@ public class NewBluePrint extends JPanel{
 		//write Scale Label
 		g2d.setColor(Color.WHITE);
 		g2d.setFont(new Font("Arial", Font.ITALIC, 20));
-		g.drawString(_physicalToGrapic.getScaleFactor().toString(), 20, getHeight()-20);
 		
+		
+		g.drawString("Scale 1 : "+ _df2.format(_physicalToGrapic.getScale()), 20, getHeight()-20);		
 		repaint();
 	}	
 	

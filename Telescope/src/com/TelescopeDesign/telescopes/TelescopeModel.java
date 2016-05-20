@@ -37,9 +37,9 @@ public class TelescopeModel{
 	 * of a tree.
 	 */
 	public TelescopeModel()
-	{			
+	{					
 		_parts = new HashMap<TelescopeParts, PartModel>();
-		_parts.put(TelescopeParts.TUBE, new Tube(1.0,2.0,3.0));
+		_parts.put(TelescopeParts.TUBE, new Tube(245.0,250.0,1400.0));
 		_parts.put(TelescopeParts.PRIMARY_MIRROR, new PrimaryMirror());
 		_parts.put(TelescopeParts.SECONDARY_MIRROR, new SecondaryMirror());
 		
@@ -73,8 +73,7 @@ public class TelescopeModel{
 		_telescopeType.add(_optics);
 		
 		_telescopeType.add(_focuser);
-	
-		
+			
 		_telescopeType.add(_eyepieces);		
 		_eyepieces.add(_nadler);
 		_eyepieces.add(_ploessel);
@@ -89,7 +88,7 @@ public class TelescopeModel{
 	
 	/**
 	 * Returns the data model of the requested part of the telescope
-	 * @param part
+	 * @param _part
 	 * @return PartModel
 	 */
 	public PartModel getPartModel(TreePath path) {
