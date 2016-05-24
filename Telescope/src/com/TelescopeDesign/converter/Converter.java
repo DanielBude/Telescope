@@ -15,7 +15,9 @@ import com.TelescopeDesign.types.TelescopeParts;
  */
 public class Converter {
 
+	private static final double MM_TO_INCH = 0.03937008;
 	Double _scaleFactor;
+	Double _border;
 	JPanel _panel;
 	IConvertable _part;
 	Double _screenResolution;
@@ -27,14 +29,20 @@ public class Converter {
 		_panel = panel;		
 		_part = (IConvertable) dataModel.getPartModel(TelescopeParts.TUBE);		
 		
-		_scaleFactor = calculateScaleFactor();
+		
 		_screenResolution = calculateResolution(g.getDefaultScreenDevice(), 23.0);
+		_border = 10*_screenResolution;
+		_scaleFactor = calculateScaleFactor();
 	}
 	
 
 	public Double getScale()
 	{
 		return _screenResolution/calculateScaleFactor();
+	}
+	public Double getScaleFactor()
+	{
+		return _scaleFactor;
 	}
 	
 	public Double getTotalWidth()
@@ -48,12 +56,12 @@ public class Converter {
 	}	
 	
 	private Double calculateScaleFactor()
-	{
-		//TODO Consider Border
-		if((_panel.getHeight()/_part.getHeight())< (_panel.getWidth()/_part.getWidth()))
-			_scaleFactor = _panel.getHeight()/_part.getHeight();
+	{		
+		System.out.println(_border);
+		if(((_panel.getHeight()-2*_border)/_part.getHeight())< ((_panel.getWidth()-2*_border)/_part.getWidth()))
+			_scaleFactor = (_panel.getHeight()-2*_border)/_part.getHeight();
 		else
-			_scaleFactor = _panel.getWidth()/_part.getWidth();		
+			_scaleFactor = (_panel.getWidth()-2*_border)/_part.getWidth();		
 		
 		return _scaleFactor; 
 	}
@@ -65,7 +73,9 @@ public class Converter {
 		
 		Double diagPixel = Math.sqrt(Math.pow(screenHeight,2)+ Math.pow(screenWidth,2));
 		
-		return diagPixel/(23*25.4);	
+		return diagPixel/diag*MM_TO_INCH;	
 	}
+	
+	
 	
 }

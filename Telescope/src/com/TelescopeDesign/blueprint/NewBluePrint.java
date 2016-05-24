@@ -46,7 +46,7 @@ public class NewBluePrint extends JPanel{
 		_opticalAxis = new OpticalAxis(this);
 		_opticalSecMirrorAxis = new OpticalAxis(this);
 		
-		_tube = new TubePrint(_dataModel.getPartModel(TelescopeParts.TUBE));
+		_tube = new TubePrint(_dataModel.getPartModel(TelescopeParts.TUBE), _physicalToGrapic);
 		_tube.setReference( 50, _opticalAxis.getY1());
 		
 		_secMirror = new SecondaryMirrorPrint();
