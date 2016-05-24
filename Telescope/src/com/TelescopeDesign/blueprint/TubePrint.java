@@ -1,8 +1,6 @@
 package com.TelescopeDesign.blueprint;
 
 import java.awt.geom.Rectangle2D;
-import java.util.EnumSet;
-
 import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.types.Parameter;
@@ -23,25 +21,11 @@ public class TubePrint extends Rectangle2D{
 	{
 	_converter = conv;
 	 _x = 0;
-	 _y = 0;
-	 
-	 EnumSet<Parameter> parameterKeys = data.getParameters();
-	 
-	 for(Parameter key : parameterKeys)
-	 {		 
-		 for(int i=0; i< data.getProperties().size(); i++ )
-		 {
-			 if(key.equals(Parameter.DIAMETER_INSIDE))
-				 _diaInside = data.getProperties().get(i).getValue();
-				 
-			 if(key.equals(Parameter.DIAMETER_OUTSIDE))
-				 _diaOutside = data.getProperties().get(i).getValue();
-				 
-			 if(key.equals(Parameter.LENGTH))
-				 _length = data.getProperties().get(i).getValue();;
-		 }		 
-	 }
-
+	 _y = 0;	
+	
+	 _diaInside = data.getPropertyValue(Parameter.DIAMETER_INSIDE);
+	 _diaOutside = data.getPropertyValue(Parameter.DIAMETER_OUTSIDE);
+	 _length = data.getPropertyValue(Parameter.LENGTH);
 	}
 	
 	@Override
@@ -81,8 +65,8 @@ public class TubePrint extends Rectangle2D{
 	}
 
 	@Override
-	public double getX() {	
-		return _x;
+	public double getX() {		
+		return _xRef;
 	}
 
 	@Override
@@ -104,7 +88,7 @@ public class TubePrint extends Rectangle2D{
 
 	public void setReference(double x, double y) {		
 		_yRef  = y;
-		_xRef  = x;		
+		_xRef  = _converter.getScreenResolution()*x;		
 	}
 	
 	private double convertPhysicalData(double value)

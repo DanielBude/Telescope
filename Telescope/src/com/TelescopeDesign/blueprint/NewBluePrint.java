@@ -21,11 +21,12 @@ public class NewBluePrint extends JPanel{
 	private static final long serialVersionUID = 5477941012007016953L;
 	
 	private TelescopeModel _dataModel;
-	Converter _physicalToGrapic;
-	OpticalAxis _opticalAxis, _opticalSecMirrorAxis;
-	TubePrint _tube;
-	SecondaryMirrorPrint _secMirror;
+	private Converter _physicalToGrapic;
+	private OpticalAxis _opticalAxis, _opticalSecMirrorAxis;
+	private TubePrint _tube;
+	private SecondaryMirrorPrint _secMirror;
 	
+	private Double _border = 10.0; //mm
 	DecimalFormat _df2 = new DecimalFormat( "#,###,###,##0.0" );
 	
 	
@@ -47,7 +48,8 @@ public class NewBluePrint extends JPanel{
 		_opticalSecMirrorAxis = new OpticalAxis(this);
 		
 		_tube = new TubePrint(_dataModel.getPartModel(TelescopeParts.TUBE), _physicalToGrapic);
-		_tube.setReference( 50, _opticalAxis.getY1());
+		_tube.setReference( _border, _opticalAxis.getY1());
+		_tube.updateData();
 		
 		_secMirror = new SecondaryMirrorPrint();
 		_secMirror.setReference(20,  _opticalAxis.getY1() - 5);

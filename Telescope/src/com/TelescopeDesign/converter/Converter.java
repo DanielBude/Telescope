@@ -27,8 +27,7 @@ public class Converter {
 		
 		 GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		_panel = panel;		
-		_part = (IConvertable) dataModel.getPartModel(TelescopeParts.TUBE);		
-		
+		_part = (IConvertable) dataModel.getPartModel(TelescopeParts.TUBE);			
 		
 		_screenResolution = calculateResolution(g.getDefaultScreenDevice(), 23.0);
 		_border = 10*_screenResolution;
@@ -45,6 +44,12 @@ public class Converter {
 		return _scaleFactor;
 	}
 	
+	public Double getScreenResolution()
+	{
+		return _screenResolution;
+	}
+	
+	
 	public Double getTotalWidth()
 	{		
 		return 0.0;
@@ -56,8 +61,7 @@ public class Converter {
 	}	
 	
 	private Double calculateScaleFactor()
-	{		
-		System.out.println(_border);
+	{
 		if(((_panel.getHeight()-2*_border)/_part.getHeight())< ((_panel.getWidth()-2*_border)/_part.getWidth()))
 			_scaleFactor = (_panel.getHeight()-2*_border)/_part.getHeight();
 		else
@@ -74,8 +78,5 @@ public class Converter {
 		Double diagPixel = Math.sqrt(Math.pow(screenHeight,2)+ Math.pow(screenWidth,2));
 		
 		return diagPixel/diag*MM_TO_INCH;	
-	}
-	
-	
-	
+	}	
 }

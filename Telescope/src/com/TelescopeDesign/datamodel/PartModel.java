@@ -93,4 +93,16 @@ public class PartModel extends AbstractTableModel{
 		
 		return _parameterSet;
 	}
+	
+	public Double getPropertyValue(Parameter key)
+	{		
+		for(int i=0; i<_property.size(); i++)
+		{
+			if(_property.get(i).getKey().equals(key))
+				return _property.get(i).getValue();
+		}
+		
+		return null;
+	}
+	
 }
