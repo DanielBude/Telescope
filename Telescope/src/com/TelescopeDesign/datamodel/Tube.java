@@ -4,7 +4,7 @@ import java.util.EnumSet;
 
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
-import com.kuka.TelescopeDesign.converter.IConvertable;
+import com.TelescopeDesign.converter.IConvertable;
 
 public class Tube extends PartModel implements IConvertable {
 

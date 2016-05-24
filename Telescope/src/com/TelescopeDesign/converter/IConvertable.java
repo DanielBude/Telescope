@@ -1,4 +1,4 @@
-package com.kuka.TelescopeDesign.converter;
+package com.TelescopeDesign.converter;
 
 public interface IConvertable {
 

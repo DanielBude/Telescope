@@ -7,7 +7,6 @@ import javax.swing.table.AbstractTableModel;
 
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
-import com.kuka.TelescopeDesign.converter.IConvertable;
 
 public class PartModel extends AbstractTableModel{
 

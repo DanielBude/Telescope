@@ -1,4 +1,4 @@
-package com.kuka.TelescopeDesign.converter;
+package com.TelescopeDesign.converter;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

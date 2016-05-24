@@ -5,19 +5,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Label;
-import java.awt.Point;
-import java.awt.Shape;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
 import com.TelescopeDesign.telescopes.TelescopeModel;
 import com.TelescopeDesign.types.TelescopeParts;
-import com.kuka.TelescopeDesign.converter.Converter;
+import com.TelescopeDesign.converter.Converter;
 
 public class NewBluePrint extends JPanel{
 
