@@ -2,21 +2,36 @@ package com.TelescopeDesign.blueprint;
 
 import java.awt.geom.Rectangle2D;
 
+import com.TelescopeDesign.converter.Converter;
+import com.TelescopeDesign.datamodel.PartModel;
+import com.TelescopeDesign.types.Parameter;
+
 public class SecondaryMirrorPrint extends Rectangle2D{
 
+	Converter _converter;
+	double _diameter;
+	double _thickness;
+	
 	double _hight;
 	double _width;
-	double _x;
-	double _y;
+	double _xRef;
+	double _yRef;
 	
 	
-	public SecondaryMirrorPrint()
+	public SecondaryMirrorPrint(PartModel data, Converter conv)
 	{
-	 _x = 0;
-	 _y = 0;
+		
+		
+	 _xRef = 0;
+	 _yRef = 0;
+	 _hight = 0;
+	 _width = 0;	
 	 
-	 _hight = 55;
-	 _width = 20;
+	 _converter = conv;
+	 
+	 
+	 _diameter= data.getPropertyValue(Parameter.DIAMETER);
+	 _thickness = data.getPropertyValue(Parameter.THICKNESS);
 	 	 
 	}
 	
@@ -38,8 +53,8 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 
 	@Override
 	public void setRect(double x, double y, double w, double h) {
-		_x = x;
-		_y = y;
+		_xRef = x;
+		_yRef = y;
 		_width=  w;
 		_hight = h;		
 	}
@@ -56,12 +71,12 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 
 	@Override
 	public double getX() {	
-		return _x;
+		return _xRef;
 	}
 
 	@Override
 	public double getY() {	
-		return _y;
+		return _yRef;
 	}
 
 	@Override
@@ -69,11 +84,21 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public void updateData()
+	{
+		_hight = convertPhysicalData(_diameter);
+		_width = convertPhysicalData(_thickness);
+	}
 
 
-	public void setReference(double x, double y) {
-		
-		_y  = y - _hight/2;
-		_x  = x;		
+	public void setReference(double x, double offset) {		
+		_yRef  = convertPhysicalData(offset) - _hight/2;
+		_xRef  = x;		
+	}
+	
+	private double convertPhysicalData(double value)
+	{
+		return  _converter.getScaleFactor()*value;
 	}
 }

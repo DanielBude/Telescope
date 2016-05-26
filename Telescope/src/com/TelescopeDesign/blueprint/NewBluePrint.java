@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import javax.swing.JPanel;
 
 import com.TelescopeDesign.telescopes.TelescopeModel;
+import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.TelescopeParts;
 import com.TelescopeDesign.converter.Converter;
 
@@ -36,6 +37,9 @@ public class NewBluePrint extends JPanel{
 		_physicalToGrapic = new Converter(this,_dataModel);
 		Color background = new Color(38,104,215);			
 		setBackground(background);		
+		
+		//Print Telescope Parts
+
 	}
 	
 	@Override
@@ -51,8 +55,11 @@ public class NewBluePrint extends JPanel{
 		_tube.setReference( _border, _opticalAxis.getY1());
 		_tube.updateData();
 		
-		_secMirror = new SecondaryMirrorPrint();
-		_secMirror.setReference(20,  _opticalAxis.getY1() - 5);
+		
+		double secMirrorOffset = _dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR).getPropertyValue(Parameter.OFFSET);
+		_secMirror = new SecondaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR), _physicalToGrapic);
+		_secMirror.setReference(20,  _opticalAxis.getY1()/* - secMirrorOffset*/);
+		_secMirror.updateData();
 		
 		//draw optical axis
 		g2d.setColor(Color.WHITE);
