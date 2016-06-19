@@ -18,10 +18,10 @@ public class PrimaryMirror extends PartModel{
 	public PrimaryMirror()
 	{		
 		_partName = "Primary Mirror";
-		_diameter = 6;
-		_radius = 10;
-		_thickness = 20;
-		_focalLength = 0.0;	
+		_diameter = 200;
+		_radius = 100;
+		_thickness = 30;
+		_focalLength = 1500.0;	
 
 		_tableHeader.add(_partName);
 		_tableHeader.add("");		

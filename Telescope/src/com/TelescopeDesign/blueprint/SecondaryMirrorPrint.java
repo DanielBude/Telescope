@@ -10,8 +10,8 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 
 	Converter _converter;
 	double _diameter;
-	double _thickness;
-	
+	double _thickness;	
+	double _offset;
 	double _hight;
 	double _width;
 	double _xRef;
@@ -19,19 +19,18 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 	
 	
 	public SecondaryMirrorPrint(PartModel data, Converter conv)
-	{
-		
-		
-	 _xRef = 0;
-	 _yRef = 0;
-	 _hight = 0;
-	 _width = 0;	
-	 
-	 _converter = conv;
-	 
-	 
+	{	
 	 _diameter= data.getPropertyValue(Parameter.DIAMETER);
 	 _thickness = data.getPropertyValue(Parameter.THICKNESS);
+	 _offset = data.getPropertyValue(Parameter.OFFSET);
+	
+	 _xRef = 0;
+	 _yRef = 0;
+	
+	 _width = 0;
+	 _hight = _diameter/2;
+	 
+	 _converter = conv; 
 	 	 
 	}
 	
@@ -92,9 +91,14 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 	}
 
 
-	public void setReference(double x, double offset) {		
-		_yRef  = convertPhysicalData(offset) - _hight/2;
-		_xRef  = x;		
+	/**
+	 * sets the position of the mirror  
+	 * @param x [mm]
+	 * @param offset [mm]
+	 */
+	public void setReference(double x, double y) {		
+		_yRef  = y + _offset - convertPhysicalData(_diameter/2);
+		_xRef  = _converter.getScreenResolution()*x;		
 	}
 	
 	private double convertPhysicalData(double value)

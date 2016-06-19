@@ -23,8 +23,9 @@ public class NewBluePrint extends JPanel{
 	
 	private TelescopeModel _dataModel;
 	private Converter _physicalToGrapic;
-	private OpticalAxis _opticalAxis, _opticalSecMirrorAxis;
+	private OpticalAxis _opticalAxis;
 	private TubePrint _tube;
+	private PrimaryMirrorPrint _primMirror;
 	private SecondaryMirrorPrint _secMirror;
 	
 	private Double _border = 10.0; //mm
@@ -48,18 +49,23 @@ public class NewBluePrint extends JPanel{
 		super.paint(g);	
 		Graphics2D g2d = (Graphics2D) g; 	
 				
-		_opticalAxis = new OpticalAxis(this);
-		_opticalSecMirrorAxis = new OpticalAxis(this);
+		_opticalAxis = new OpticalAxis(this);	
 		
 		_tube = new TubePrint(_dataModel.getPartModel(TelescopeParts.TUBE), _physicalToGrapic);
 		_tube.setReference( _border, _opticalAxis.getY1());
-		_tube.updateData();
+		_tube.updateData();		
 		
 		
-		double secMirrorOffset = _dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR).getPropertyValue(Parameter.OFFSET);
+		_primMirror = new PrimaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.PRIMARY_MIRROR), _physicalToGrapic);
+		_primMirror.setReference(_border+250 , _opticalAxis.getY1());
+		_primMirror.updateData();		
+		
 		_secMirror = new SecondaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR), _physicalToGrapic);
-		_secMirror.setReference(20,  _opticalAxis.getY1()/* - secMirrorOffset*/);
+		_secMirror.setReference(_border , _opticalAxis.getY1());
 		_secMirror.updateData();
+		
+		
+		
 		
 		//draw optical axis
 		g2d.setColor(Color.WHITE);
@@ -69,6 +75,11 @@ public class NewBluePrint extends JPanel{
 		//draw tube
 		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
 		g2d.draw(_tube);
+		
+		
+		//draw primary mirror
+		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
+		g2d.draw(_primMirror);			
 		
 		//draw secondary mirror			
 		g2d.shear(1, 0);

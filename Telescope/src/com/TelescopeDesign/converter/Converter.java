@@ -39,11 +39,19 @@ public class Converter {
 	{
 		return _screenResolution/calculateScaleFactor();
 	}
+	/**
+	 * Factor between the real physical dimension and the dimension on the screen
+	 * @return scaleFactor
+	 */
 	public Double getScaleFactor()
 	{
 		return _scaleFactor;
 	}
 	
+	/**
+	 * return the resolution of the screen which is defined by pixel per millimeter
+	 * @return resolution [px/mm]
+	 */
 	public Double getScreenResolution()
 	{
 		return _screenResolution;
