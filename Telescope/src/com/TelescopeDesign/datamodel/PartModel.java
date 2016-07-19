@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 import javax.swing.table.AbstractTableModel;
+import com.TelescopeDesign.types.*;
 
-import com.TelescopeDesign.types.Parameter;
-import com.TelescopeDesign.types.Property;
 
 public class PartModel extends AbstractTableModel{
 
@@ -17,9 +16,10 @@ public class PartModel extends AbstractTableModel{
 	ArrayList<String> _tableHeader;	
 	String _partName;
 	EnumSet<Parameter> _parameterSet;
-
+	EnumSet<?> _referencePoints;
+	ArrayList<Reference> _reference;
 	ArrayList<Property> _property;	
-
+	
 	
 	public PartModel(){		
 		
@@ -79,11 +79,20 @@ public class PartModel extends AbstractTableModel{
 		return "Part Name";			
 	}		
 		
+	/**
+	 * returns all properties of the part
+	 * 
+	 * @return 
+	 */
 	public ArrayList<Property> getProperties()
 	{
 		return _property;
 	}
 	
+	/**
+	 * returns all parameters of the part
+	 * @return
+	 */
 	public EnumSet<Parameter> getParameters() {
 		
 		for(int i =0; i<_property.size(); i++)
@@ -94,6 +103,12 @@ public class PartModel extends AbstractTableModel{
 		return _parameterSet;
 	}
 	
+	/**
+	 * returns the value of the specified key
+	 * 
+	 * @param key
+	 * @return 
+	 */
 	public Double getPropertyValue(Parameter key)
 	{		
 		for(int i=0; i<_property.size(); i++)
@@ -105,4 +120,43 @@ public class PartModel extends AbstractTableModel{
 		return null;
 	}
 	
+	/**
+	 * Returns a list of references between reference points of one part
+	 * @return ArrayList<Reference>
+	 */
+	public ArrayList<Reference> getPartReferences()
+	{
+		return _reference;
+	}
+	
+	/**
+	 * all defined reference points of the part
+	 * @return
+	 */
+	public EnumSet<?> getReferencePoints()
+	{
+		return _referencePoints;
+	}
+	
+	/**
+	 * validate if a reference between two points exists within the part
+	 * 
+	 * @param a - reference point a
+	 * @param b - reference point b
+	 * @return true if reference exists, false otherwise
+	 */
+	public boolean existReference(Enum<?> a,Enum<?> b)
+	{
+		for (Reference ref: _reference)
+		{
+			if(ref.getA().equals(a) && ref.getB().equals(b))
+				return true;
+			
+			if(ref.getA().equals(b) && ref.getB().equals(a))
+				return true;
+		}
+		
+		return false;
+	}
+
 }

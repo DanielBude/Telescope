@@ -13,12 +13,15 @@ import com.TelescopeDesign.datamodel.SecondaryMirror;
 import com.TelescopeDesign.datamodel.Tube;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
+import com.TelescopeDesign.types.Reference;
 import com.TelescopeDesign.types.TelescopeParts;
 
 public class TelescopeModel{
 
 	Map<TelescopeParts, PartModel> _parts;
 	ArrayList<Property> _generalTelescopeProperties;
+	ArrayList<Reference> _reference;
+
 	
 	private DefaultMutableTreeNode _telescopeType, 
 								   _tube, 
@@ -31,6 +34,7 @@ public class TelescopeModel{
 								   _ploessel, 
 								   _focuser;
 
+	
 	/**
 	 * Creates a model of a newtonian telescope with all relevant optical and mechanical components
 	 * The model contains objects of the parts and its properties. The parts are organized in a data structure
@@ -47,7 +51,12 @@ public class TelescopeModel{
 		_generalTelescopeProperties.add(new Property(Parameter.FOCAL_RATIO, "Focal ratio [f/1]", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.APERTURE, "Aperture ['']", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.OBSTRUCTION, "Obstruction [%]", 0.0));
-		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));		
+		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));	
+		
+		//Remove this bullshit
+		_reference.add(new Reference(getPartModel(TelescopeParts.PRIMARY_MIRROR).getPartReferences().get(0).getA(), 
+									 getPartModel(TelescopeParts.TUBE).getPartReferences().get(0).getA(),0,0));
+			
 						
 		createTelescopeTree();				
 				

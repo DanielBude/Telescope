@@ -12,6 +12,8 @@ public class SecondaryMirror extends PartModel{
 	private double _diameter;
 	private double _thickness;
 	private double _offset;
+	
+	public enum ReferencePoint{MIRROR_CENTER}; 
 
 	public SecondaryMirror()
 	{
@@ -26,6 +28,7 @@ public class SecondaryMirror extends PartModel{
 		_property.add(new Property(Parameter.DIAMETER,"Diameter [mm]", _diameter));
 		_property.add(new Property(Parameter.THICKNESS,"Thickness [mm]", _thickness));
 		_property.add(new Property(Parameter.OFFSET,"Offset [mm]", _offset));
+		
 	}
 	
 	@Override

@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
 import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
@@ -65,6 +67,12 @@ public class NewBluePrint extends JPanel{
 		_secMirror.updateData();
 		
 		
+		//draw realistic primary mirror
+		g2d.setColor(Color.WHITE);
+		//g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
+		RealisticPrimaryMirrorPrint _realPrimary  = new RealisticPrimaryMirrorPrint(_opticalAxis , _dataModel.getPartModel(TelescopeParts.PRIMARY_MIRROR), _physicalToGrapic);
+		//_realPrimary.setReference(100, _opticalAxis.getY1());
+		g2d.draw(_realPrimary);
 		
 		
 		//draw optical axis

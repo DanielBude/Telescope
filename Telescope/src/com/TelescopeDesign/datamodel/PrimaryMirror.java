@@ -1,13 +1,17 @@
 package com.TelescopeDesign.datamodel;
 
+import java.util.EnumSet;
+
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
+import com.TelescopeDesign.types.Reference;
 
+/**
+ * Model that describes a concave mirror defined by thickness, radius and diameter  
+ */
 public class PrimaryMirror extends PartModel{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;	
 	private String _partName;
 	private double _diameter;
@@ -15,6 +19,9 @@ public class PrimaryMirror extends PartModel{
 	private double _thickness;
 	private double _focalLength;
 	
+	public enum ReferencePoint{BACKSIDE_BOTTOM, MIRROR_CENTER, MIRROR_TOP}; 
+	EnumSet<ReferencePoint> _refPoints;
+		
 	public PrimaryMirror()
 	{		
 		_partName = "Primary Mirror";
@@ -30,6 +37,9 @@ public class PrimaryMirror extends PartModel{
 		_property.add(new Property(Parameter.RADIUS, "Radius [mm]", _radius));
 		_property.add(new Property(Parameter.THICKNESS, "Thickness [mm]", _thickness));
 		_property.add(new Property(Parameter.FOCAL_LENGTH,"Focal length [mm]", _focalLength));		
+		
+		_reference.add(new Reference(ReferencePoint.BACKSIDE_BOTTOM, ReferencePoint.MIRROR_CENTER,0.0 ,_diameter/2));
+		_reference.add(new Reference(ReferencePoint.BACKSIDE_BOTTOM, ReferencePoint.MIRROR_TOP, _thickness , _diameter));
 	}
 
 	@Override
@@ -37,4 +47,5 @@ public class PrimaryMirror extends PartModel{
 	{
 		return _partName;				
 	}	
+
 }

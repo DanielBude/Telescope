@@ -21,7 +21,7 @@ public class PrimaryMirrorPrint extends Rectangle2D{
 	public PrimaryMirrorPrint(PartModel data, Converter conv){
 		
 		 _diameter= data.getPropertyValue(Parameter.DIAMETER);
-		 _thickness = data.getPropertyValue(Parameter.THICKNESS);
+		 _thickness = data.getPropertyValue(Parameter.THICKNESS);		 
 		 
 
 		 _xRef = 0;
