@@ -135,7 +135,7 @@ public class PartModel extends AbstractTableModel{
 	 */
 	public EnumSet<?> getReferencePoints()
 	{
-		return _referencePoints;
+		return _referencePoints; 
 	}
 	
 	/**
