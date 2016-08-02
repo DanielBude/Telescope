@@ -25,12 +25,12 @@ public class Reference {
 		return _y;
 	}
 	
-	public Enum<?> getA()
+	public Enum<?> getStartPoint()
 	{
 		return _pointA;
 	}
 	
-	public Enum<?> getB()
+	public Enum<?> getEndPoint()
 	{
 		return _pointB;
 	}

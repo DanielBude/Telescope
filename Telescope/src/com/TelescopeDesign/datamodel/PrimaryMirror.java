@@ -12,7 +12,7 @@ import com.TelescopeDesign.types.Reference;
 public class PrimaryMirror extends PartModel{
 	
 	
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
 	private String _partName;
 	private double _diameter;
 	private double _radius;
@@ -20,8 +20,7 @@ public class PrimaryMirror extends PartModel{
 	private double _focalLength;
 	
 	public enum ReferencePoint{BACKSIDE_BOTTOM, MIRROR_CENTER, MIRROR_TOP}; 
-	EnumSet<ReferencePoint> _refPoints;
-		
+			
 	public PrimaryMirror()
 	{		
 		_partName = "Primary Mirror";
@@ -38,6 +37,7 @@ public class PrimaryMirror extends PartModel{
 		_property.add(new Property(Parameter.THICKNESS, "Thickness [mm]", _thickness));
 		_property.add(new Property(Parameter.FOCAL_LENGTH,"Focal length [mm]", _focalLength));		
 		
+		setBaseReferencePoint(ReferencePoint.BACKSIDE_BOTTOM);
 		_reference.add(new Reference(ReferencePoint.BACKSIDE_BOTTOM, ReferencePoint.MIRROR_CENTER,0.0 ,_diameter/2));
 		_reference.add(new Reference(ReferencePoint.BACKSIDE_BOTTOM, ReferencePoint.MIRROR_TOP, _thickness , _diameter));
 	}

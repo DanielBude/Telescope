@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 import com.TelescopeDesign.converter.IConvertable;
+import com.TelescopeDesign.datamodel.PrimaryMirror.ReferencePoint;
 
 public class Tube extends PartModel implements IConvertable {
 
@@ -14,6 +15,7 @@ public class Tube extends PartModel implements IConvertable {
 	private static final long serialVersionUID = 1L;
 	EnumSet<Parameter> _parameterSet;
 	
+	public enum ReferencePoint{BACK, FRONT}; 
 			
 	/**
 	 * Creates a tubus which is defined by diameter inside, outside and its´s length
@@ -32,6 +34,8 @@ public class Tube extends PartModel implements IConvertable {
 		_property.add(new Property(Parameter.DIAMETER_INSIDE, "Diameter inside [mm]", diaInside));
 		_property.add(new Property(Parameter.DIAMETER_OUTSIDE,"Diameter outside [mm]", diaOutside));
 		_property.add(new Property(Parameter.LENGTH,"Length [mm]", length));		
+		
+		setBaseReferencePoint(ReferencePoint.BACK);
 	}	
 	
 	@Override

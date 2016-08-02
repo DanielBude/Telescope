@@ -14,6 +14,7 @@ import com.TelescopeDesign.datamodel.Tube;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 import com.TelescopeDesign.types.Reference;
+import com.TelescopeDesign.types.ReferenceGraph;
 import com.TelescopeDesign.types.TelescopeParts;
 
 public class TelescopeModel{
@@ -21,6 +22,7 @@ public class TelescopeModel{
 	Map<TelescopeParts, PartModel> _parts;
 	ArrayList<Property> _generalTelescopeProperties;
 	ArrayList<Reference> _reference;
+	ReferenceGraph _refGraph;
 
 	
 	private DefaultMutableTreeNode _telescopeType, 
@@ -42,10 +44,12 @@ public class TelescopeModel{
 	 */
 	public TelescopeModel()
 	{					
+		_refGraph = new ReferenceGraph();
+		
 		_parts = new HashMap<TelescopeParts, PartModel>();
 		_parts.put(TelescopeParts.TUBE, new Tube(245.0,250.0,1400.0));
 		_parts.put(TelescopeParts.PRIMARY_MIRROR, new PrimaryMirror());
-		_parts.put(TelescopeParts.SECONDARY_MIRROR, new SecondaryMirror());
+		_parts.put(TelescopeParts.SECONDARY_MIRROR, new SecondaryMirror());		
 		
 		_generalTelescopeProperties = new ArrayList<Property>();
 		_generalTelescopeProperties.add(new Property(Parameter.FOCAL_RATIO, "Focal ratio [f/1]", 0.0));
@@ -53,10 +57,14 @@ public class TelescopeModel{
 		_generalTelescopeProperties.add(new Property(Parameter.OBSTRUCTION, "Obstruction [%]", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));	
 		
-		//Remove this bullshit
-		_reference.add(new Reference(getPartModel(TelescopeParts.PRIMARY_MIRROR).getPartReferences().get(0).getA(), 
-									 getPartModel(TelescopeParts.TUBE).getPartReferences().get(0).getA(),0,0));
-			
+		
+		System.out.println(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint().toString());
+		System.out.println(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint().toString());
+		
+		//Define References between telescope parts
+		_refGraph.add(new Reference(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(), 
+									_parts.get(TelescopeParts.TUBE).getBaseReferencePoint(),0.0,0.0));		
+
 						
 		createTelescopeTree();				
 				

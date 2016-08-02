@@ -16,15 +16,19 @@ public class PartModel extends AbstractTableModel{
 	ArrayList<String> _tableHeader;	
 	String _partName;
 	EnumSet<Parameter> _parameterSet;
-	EnumSet<?> _referencePoints;
+	ReferenceGraph _refGraph;
+	ArrayList<Enum<?>> _referencePoints;
 	ArrayList<Reference> _reference;
 	ArrayList<Property> _property;	
+	
 	
 	
 	public PartModel(){		
 		
 		  _tableHeader = new ArrayList<String>();
-		  _property = new ArrayList<Property>();		  
+		  _property = new ArrayList<Property>();
+		  _reference = new ArrayList<Reference>();
+		  _refGraph = new ReferenceGraph();
 	}
 		
 	@Override
@@ -133,9 +137,20 @@ public class PartModel extends AbstractTableModel{
 	 * all defined reference points of the part
 	 * @return
 	 */
-	public EnumSet<?> getReferencePoints()
+	public ArrayList<Enum<?>> getReferencePoints()
+	{		
+		return _refGraph.getReferencePoints();
+	}
+	
+	public Enum<?> getBaseReferencePoint()
 	{
-		return _referencePoints; 
+		return _refGraph.getBaseReferencePoint();
+	}
+	
+	
+	public void setBaseReferencePoint(Enum<?> base)
+	{
+		_refGraph.setBaseReferencePoint(base);
 	}
 	
 	/**
@@ -149,10 +164,10 @@ public class PartModel extends AbstractTableModel{
 	{
 		for (Reference ref: _reference)
 		{
-			if(ref.getA().equals(a) && ref.getB().equals(b))
+			if(ref.getStartPoint().equals(a) && ref.getEndPoint().equals(b))
 				return true;
 			
-			if(ref.getA().equals(b) && ref.getB().equals(a))
+			if(ref.getStartPoint().equals(b) && ref.getEndPoint().equals(a))
 				return true;
 		}
 		
