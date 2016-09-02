@@ -58,12 +58,14 @@ public class TelescopeModel{
 		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));	
 		
 		
-		System.out.println(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint().toString());
-		System.out.println(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint().toString());
+		//System.out.println(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint().toString());
+		//System.out.println(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint().toString());
 		
 		//Define References between telescope parts
 		_refGraph.add(new Reference(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(), 
 									_parts.get(TelescopeParts.TUBE).getBaseReferencePoint(),0.0,0.0));		
+		
+		
 
 						
 		createTelescopeTree();				

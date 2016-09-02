@@ -18,7 +18,6 @@ public class PartModel extends AbstractTableModel{
 	EnumSet<Parameter> _parameterSet;
 	ReferenceGraph _refGraph;
 	ArrayList<Enum<?>> _referencePoints;
-	ArrayList<Reference> _reference;
 	ArrayList<Property> _property;	
 	
 	
@@ -27,7 +26,6 @@ public class PartModel extends AbstractTableModel{
 		
 		  _tableHeader = new ArrayList<String>();
 		  _property = new ArrayList<Property>();
-		  _reference = new ArrayList<Reference>();
 		  _refGraph = new ReferenceGraph();
 	}
 		
@@ -130,7 +128,7 @@ public class PartModel extends AbstractTableModel{
 	 */
 	public ArrayList<Reference> getPartReferences()
 	{
-		return _reference;
+		return _refGraph.getAllRefernces();
 	}
 	
 	/**
@@ -162,7 +160,7 @@ public class PartModel extends AbstractTableModel{
 	 */
 	public boolean existReference(Enum<?> a,Enum<?> b)
 	{
-		for (Reference ref: _reference)
+		for (Reference ref: _refGraph.getAllRefernces())
 		{
 			if(ref.getStartPoint().equals(a) && ref.getEndPoint().equals(b))
 				return true;

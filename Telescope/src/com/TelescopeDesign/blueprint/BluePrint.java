@@ -5,18 +5,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Area;
+import java.awt.geom.Line2D;
 import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
 import com.TelescopeDesign.telescopes.TelescopeModel;
-import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.TelescopeParts;
 import com.TelescopeDesign.converter.Converter;
 
-public class NewBluePrint extends JPanel{
+public class BluePrint extends JPanel{
 
 	/**
 	 * 
@@ -32,10 +30,9 @@ public class NewBluePrint extends JPanel{
 	
 	private Double _border = 10.0; //mm
 	DecimalFormat _df2 = new DecimalFormat( "#,###,###,##0.0" );
-	
-	
-	public NewBluePrint(TelescopeModel model)
-	{
+		
+	public BluePrint(TelescopeModel model)
+	{	
 		_dataModel = model;
 		_physicalToGrapic = new Converter(this,_dataModel);
 		Color background = new Color(38,104,215);			
@@ -47,14 +44,18 @@ public class NewBluePrint extends JPanel{
 	
 	@Override
 	public void paint(Graphics g)
-	{
+	{		
 		super.paint(g);	
-		Graphics2D g2d = (Graphics2D) g; 	
-				
-		_opticalAxis = new OpticalAxis(this);	
+		Graphics2D g2d = (Graphics2D) g;	
+		
+		// set Origin 
+		Double _originX = (this.getWidth() - _physicalToGrapic.getScreenResolution()*_border);
+		Integer _originY = (int) (this.getHeight()/2);	
+		
+		_opticalAxis = new OpticalAxis(this);
 		
 		_tube = new TubePrint(_dataModel.getPartModel(TelescopeParts.TUBE), _physicalToGrapic);
-		_tube.setReference( _border, _opticalAxis.getY1());
+		_tube.setReference( _border, _opticalAxis.getY1());	
 		_tube.updateData();		
 		
 		
@@ -67,14 +68,14 @@ public class NewBluePrint extends JPanel{
 		_secMirror.updateData();
 		
 		
+	
 		//draw realistic primary mirror
 		g2d.setColor(Color.WHITE);
 		//g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
 		RealisticPrimaryMirrorPrint _realPrimary  = new RealisticPrimaryMirrorPrint(_opticalAxis , _dataModel.getPartModel(TelescopeParts.PRIMARY_MIRROR), _physicalToGrapic);
 		//_realPrimary.setReference(100, _opticalAxis.getY1());
-		g2d.draw(_realPrimary);
-		
-		
+		g2d.draw(_realPrimary);		
+				
 		//draw optical axis
 		g2d.setColor(Color.WHITE);
 		g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 0, new float[]{20,20,3,20}, 0));
@@ -83,8 +84,7 @@ public class NewBluePrint extends JPanel{
 		//draw tube
 		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
 		g2d.draw(_tube);
-		
-		
+				
 		//draw primary mirror
 		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
 		g2d.draw(_primMirror);			
@@ -95,10 +95,16 @@ public class NewBluePrint extends JPanel{
 		g2d.draw(_secMirror);		
 		g2d.shear(-1, 0);
 		
+		//print Origin
+		g2d.setColor(Color.RED);		
+		g2d.setStroke(new BasicStroke(2,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
+		g2d.draw(new Line2D.Double(_originX-5, _originY, _originX+5, _originY));
+		g2d.draw(new Line2D.Double(_originX, _originY-5, _originX, _originY+5));
+		
+		
 		//write Scale Label
 		g2d.setColor(Color.WHITE);
-		g2d.setFont(new Font("Arial", Font.ITALIC, 20));
-		
+		g2d.setFont(new Font("Arial", Font.ITALIC, 20));		
 		
 		g.drawString("Scale 1 : "+ _df2.format(_physicalToGrapic.getScale()), 20, getHeight()-20);		
 		repaint();

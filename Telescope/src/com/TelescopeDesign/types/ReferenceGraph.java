@@ -18,11 +18,7 @@ public class ReferenceGraph extends ArrayList<Reference> {
 		
 	}
 	
-	public ArrayList<Enum<?>> getReferencePoints()
-	{
-		return _points;
-	}	
-	
+
 	/**
 	 * adds new reference points to the list and their references to each other
 	 * 
@@ -39,11 +35,22 @@ public class ReferenceGraph extends ArrayList<Reference> {
 			_points.add(ref.getEndPoint());		
 	}
 	
+	public ArrayList<Reference> getAllRefernces()
+	{
+		return this;
+	}
+	
 	public void addReferencePoint(Enum<?> point)
 	{
 		if(!_points.contains(point))
 			_points.add(point);
 	}
+	
+	public ArrayList<Enum<?>> getReferencePoints()
+	{
+		return _points;
+	}	
+	
 	
 	public Enum<?> getBaseReferencePoint()
 	{

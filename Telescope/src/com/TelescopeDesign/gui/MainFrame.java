@@ -13,15 +13,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreePath;
 
 import com.TelescopeDesign.app.Controller;
-import com.TelescopeDesign.blueprint.NewBluePrint;
+import com.TelescopeDesign.blueprint.BluePrint;
 import com.TelescopeDesign.telescopes.TelescopeModel;
-
-
-
 
 public class MainFrame extends JFrame
 {
-	private NewBluePrint bp;
+	private BluePrint _bp;
 		/**
 	 * 
 	 */
@@ -36,7 +33,7 @@ public class MainFrame extends JFrame
 	{	
 		_model = _ctrl.getTelescopeModel();
 		
-		bp = new NewBluePrint(_model);
+		_bp = new BluePrint(_model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
 		this.setTitle("Telescope Designer");
@@ -116,7 +113,7 @@ public class MainFrame extends JFrame
 		scrPne.setForeground(background);
 		
 		//Visualisation Panel
-		tab.add(bp,BorderLayout.CENTER);
+		tab.add(_bp,BorderLayout.CENTER);
 		tab.add(scrPne, BorderLayout.EAST);
 	
 		getContentPane().add(_southPanel ,BorderLayout.SOUTH);
@@ -138,9 +135,9 @@ public class MainFrame extends JFrame
 		_propPanel.changeTable(path);
 	}	
 
-	public NewBluePrint getBluePrint()
+	public BluePrint getBluePrint()
 	{
-		return bp;
+		return _bp;
 	}
 	
 	private void setStyle()

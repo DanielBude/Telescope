@@ -5,7 +5,6 @@ import java.util.EnumSet;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 import com.TelescopeDesign.converter.IConvertable;
-import com.TelescopeDesign.datamodel.PrimaryMirror.ReferencePoint;
 
 public class Tube extends PartModel implements IConvertable {
 
