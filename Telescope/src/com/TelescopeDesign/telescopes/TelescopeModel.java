@@ -1,6 +1,7 @@
 package com.TelescopeDesign.telescopes;
 
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,11 +63,11 @@ public class TelescopeModel{
 		//System.out.println(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint().toString());
 		
 		//Define References between telescope parts
-		_refGraph.add(new Reference(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(), 
-									_parts.get(TelescopeParts.TUBE).getBaseReferencePoint(),0.0,0.0));		
+		_refGraph.add(new Reference(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint(), 
+									_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(),-50.0,0.0));		
 		
 		
-
+		
 						
 		createTelescopeTree();				
 				
@@ -134,4 +135,17 @@ public class TelescopeModel{
 	public void setTelescopeProperty(String name, Double value){
 		//TODO: update property
 	}
+	
+	public Reference getReference(Enum<?> pointA, Enum<?> pointB)
+	{
+		for(Reference r : _refGraph.getAllRefernces())
+		{
+			if(r.getStartPoint().equals(pointA) && r.getEndPoint().equals(pointB))
+				return r;
+		}
+		
+		throw new NullPointerException("No Reference could be found");
+		
+	}
+
 }

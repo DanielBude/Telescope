@@ -37,7 +37,7 @@ public class PrimaryMirror extends PartModel{
 		_property.add(new Property(Parameter.THICKNESS, "Thickness [mm]", _thickness));
 		_property.add(new Property(Parameter.FOCAL_LENGTH,"Focal length [mm]", _focalLength));		
 		
-		setBaseReferencePoint(ReferencePoint.BACKSIDE_BOTTOM);
+		setBaseReferencePoint(ReferencePoint.MIRROR_CENTER);
 		_refGraph.add(new Reference(ReferencePoint.BACKSIDE_BOTTOM, ReferencePoint.MIRROR_CENTER,0.0 ,_diameter/2));
 		_refGraph.add(new Reference(ReferencePoint.BACKSIDE_BOTTOM, ReferencePoint.MIRROR_TOP, _thickness , _diameter));
 	}

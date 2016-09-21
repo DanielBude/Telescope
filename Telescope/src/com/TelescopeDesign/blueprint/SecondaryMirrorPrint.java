@@ -17,6 +17,7 @@ public class SecondaryMirrorPrint extends Rectangle2D{
 	double _xRef;
 	double _yRef;
 	
+	public enum ReferencePoint{MIRROR_CENTER}; 
 	
 	public SecondaryMirrorPrint(PartModel data, Converter conv)
 	{	

@@ -5,14 +5,22 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JPanel;
 
 import com.TelescopeDesign.telescopes.TelescopeModel;
+import com.TelescopeDesign.types.Reference;
 import com.TelescopeDesign.types.TelescopeParts;
 import com.TelescopeDesign.converter.Converter;
+import com.TelescopeDesign.datamodel.PartModel;
+import com.TelescopeDesign.datamodel.PrimaryMirror;
+import com.TelescopeDesign.datamodel.Tube;
+import com.TelescopeDesign.datamodel.Tube.ReferencePoint;
 
 public class BluePrint extends JPanel{
 
@@ -30,16 +38,19 @@ public class BluePrint extends JPanel{
 	
 	private Double _border = 10.0; //mm
 	DecimalFormat _df2 = new DecimalFormat( "#,###,###,##0.0" );
+	
+	HashMap<Enum<?>, Enum<?>> _graphicalLink;
+	
+	public enum GraphicReference {ORIGIN};
 		
 	public BluePrint(TelescopeModel model)
 	{	
 		_dataModel = model;
-		_physicalToGrapic = new Converter(this,_dataModel);
-		Color background = new Color(38,104,215);			
-		setBackground(background);		
-		
-		//Print Telescope Parts
+		_physicalToGrapic = new Converter(this,_dataModel);	
 
+		
+		Color background = new Color(38,104,215);			
+		setBackground(background);
 	}
 	
 	@Override
@@ -47,25 +58,31 @@ public class BluePrint extends JPanel{
 	{		
 		super.paint(g);	
 		Graphics2D g2d = (Graphics2D) g;	
-		
+		Point _origin = new Point();
+				
 		// set Origin 
-		Double _originX = (this.getWidth() - _physicalToGrapic.getScreenResolution()*_border);
+		Integer _originX = (int) (this.getWidth() - _physicalToGrapic.getScreenResolution()*_border);
 		Integer _originY = (int) (this.getHeight()/2);	
+		_origin.setLocation(_originX, _originY);
 		
 		_opticalAxis = new OpticalAxis(this);
-		
+				
 		_tube = new TubePrint(_dataModel.getPartModel(TelescopeParts.TUBE), _physicalToGrapic);
-		_tube.setReference( _border, _opticalAxis.getY1());	
-		_tube.updateData();		
-		
+		_tube.setPosition(_dataModel.getPartModel(TelescopeParts.TUBE).getBaseReferencePoint(), _origin);
+		//_tube.setReference(tube2Origin);
+		_tube.updateData();			
+				
 		
 		_primMirror = new PrimaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.PRIMARY_MIRROR), _physicalToGrapic);
-		_primMirror.setReference(_border+250 , _opticalAxis.getY1());
+		Reference tube2Primary =_dataModel.getReference(Tube.ReferencePoint.BACK, PrimaryMirror.ReferencePoint.MIRROR_CENTER);		
+		_primMirror.setOrigin(_tube.getPosition(Tube.ReferencePoint.BACK));		
+		_primMirror.setReference(tube2Primary);				
 		_primMirror.updateData();		
 		
-		_secMirror = new SecondaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR), _physicalToGrapic);
-		_secMirror.setReference(_border , _opticalAxis.getY1());
-		_secMirror.updateData();
+//		_secMirror = new SecondaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR), _physicalToGrapic);
+//		Reference Primary2Secondary =_dataModel.getReference(PrimaryMirror.ReferencePoint.MIRROR_CENTER, SecondaryMirrorPrint.ReferencePoint.MIRROR_CENTER);
+//		_secMirror.setReference(_border , _opticalAxis.getY1());
+//		_secMirror.updateData();
 		
 		
 	
@@ -90,10 +107,10 @@ public class BluePrint extends JPanel{
 		g2d.draw(_primMirror);			
 		
 		//draw secondary mirror			
-		g2d.shear(1, 0);
-		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
-		g2d.draw(_secMirror);		
-		g2d.shear(-1, 0);
+//		g2d.shear(1, 0);
+//		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
+//		g2d.draw(_secMirror);		
+//		g2d.shear(-1, 0);
 		
 		//print Origin
 		g2d.setColor(Color.RED);		

@@ -1,8 +1,11 @@
 package com.TelescopeDesign.blueprint;
 
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
+import com.TelescopeDesign.datamodel.Tube;
+import com.TelescopeDesign.datamodel.Tube.ReferencePoint;
 import com.TelescopeDesign.types.Parameter;
 
 public class TubePrint extends Rectangle2D{
@@ -25,7 +28,10 @@ public class TubePrint extends Rectangle2D{
 	
 	 _diaInside = data.getPropertyValue(Parameter.DIAMETER_INSIDE);
 	 _diaOutside = data.getPropertyValue(Parameter.DIAMETER_OUTSIDE);
-	 _length = data.getPropertyValue(Parameter.LENGTH);
+	 _length = data.getPropertyValue(Parameter.LENGTH);	 
+	 
+	 _hight = convertPhysicalData(_diaOutside);
+	 _width = convertPhysicalData(_length);
 	}
 	
 	@Override
@@ -71,7 +77,7 @@ public class TubePrint extends Rectangle2D{
 
 	@Override
 	public double getY() {	
-		return _yRef - _hight/2;
+		return _yRef;
 	}
 
 	@Override
@@ -86,10 +92,34 @@ public class TubePrint extends Rectangle2D{
 		_width = convertPhysicalData(_length);
 	}
 
-	public void setReference(double x, double y) {		
-		_yRef  = y;
-		_xRef  = _converter.getScreenResolution()*x;		
+	public void setPosition(Enum<?> dist,  Point ref) {		
+		
+		double xcorr = 0;
+		double ycorr = 0;
+		
+		if(dist.equals(ReferencePoint.BACK))
+		{
+			xcorr = -_width;
+			ycorr = -_hight/2;
+		}
+		
+		_yRef  = ref.getY()+ycorr;
+		_xRef  = ref.getX()+xcorr;		
 	}
+	
+	public Point getPosition(ReferencePoint refPoint)
+	{
+		Integer x = 0;
+		Integer y = 0;
+		if(refPoint.equals(Tube.ReferencePoint.BACK))
+		{
+			x = (int) (_xRef + convertPhysicalData(_length));
+			y = (int) (_yRef + convertPhysicalData(_diaOutside/2));
+		}
+		
+		return new Point(x, y);
+	}	
+	
 	
 	private double convertPhysicalData(double value)
 	{

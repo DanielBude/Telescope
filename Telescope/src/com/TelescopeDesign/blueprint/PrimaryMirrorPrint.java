@@ -1,15 +1,21 @@
 package com.TelescopeDesign.blueprint;
 
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 
 import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
+import com.TelescopeDesign.datamodel.PrimaryMirror;
+import com.TelescopeDesign.datamodel.Tube;
 import com.TelescopeDesign.types.Parameter;
+import com.TelescopeDesign.types.Reference;
 
 public class PrimaryMirrorPrint extends Rectangle2D{
 
-	
+	Tube.ReferencePoint _referencePoint;
 	Converter _converter;
+	Reference _origin;
+	Point _root;
 	double _diameter;
 	double _thickness;	
 	double _offset;
@@ -18,19 +24,24 @@ public class PrimaryMirrorPrint extends Rectangle2D{
 	double _xRef;
 	double _yRef;
 	
+	public enum GraphicReference {ORIGIN};
+	
 	public PrimaryMirrorPrint(PartModel data, Converter conv){
 		
+		 _converter = conv; 
 		 _diameter= data.getPropertyValue(Parameter.DIAMETER);
-		 _thickness = data.getPropertyValue(Parameter.THICKNESS);		 
+		 _thickness = data.getPropertyValue(Parameter.THICKNESS);	
+		
+		 _root = new Point(0,0);
+		 _origin = new Reference(GraphicReference.ORIGIN, PrimaryMirror.ReferencePoint.MIRROR_CENTER, _thickness,_diameter/2);
+ 
 		 
 
 		 _xRef = 0;
 		 _yRef = 0;
 		
 		 _width = 0;
-		 _hight = _diameter/2;
-		 
-		 _converter = conv; 		 
+		 _hight = _diameter;
 	}
 
 	
@@ -89,20 +100,19 @@ public class PrimaryMirrorPrint extends Rectangle2D{
 		_width = convertPhysicalData(_thickness);
 	}
 
-
-	/**
-	 * sets the position of the mirror  
-	 * @param x [mm]
-	 * @param offset [mm]
-	 */
-	public void setReference(double x, double y) {		
-		_yRef  = y + _offset - convertPhysicalData(_diameter/2);
-		_xRef  = _converter.getScreenResolution()*x;		
-	}
-	
 	private double convertPhysicalData(double value)
 	{
 		return  _converter.getScaleFactor()*value;
 	}
-
+	
+	public void setReference(Reference r)
+	{
+		_xRef = _root.getX() + convertPhysicalData(r.getDistanceX() - _origin.getDistanceX());
+		_yRef = _root.getY() + convertPhysicalData(r.getDistanceY() - _origin.getDistanceY());
+	}
+	
+	public void setOrigin(Point o)
+	{
+		_root.setLocation(o.getX(), o.getY());	   
+	}
 }
