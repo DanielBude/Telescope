@@ -1,5 +1,6 @@
 package com.TelescopeDesign.datamodel;
 
+import com.TelescopeDesign.datamodel.PrimaryMirror.ReferencePoint;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
 
@@ -28,6 +29,8 @@ public class SecondaryMirror extends PartModel{
 		_property.add(new Property(Parameter.DIAMETER,"Diameter [mm]", _diameter));
 		_property.add(new Property(Parameter.THICKNESS,"Thickness [mm]", _thickness));
 		_property.add(new Property(Parameter.OFFSET,"Offset [mm]", _offset));
+		
+		setBaseReferencePoint(ReferencePoint.MIRROR_CENTER);
 		
 	}
 	

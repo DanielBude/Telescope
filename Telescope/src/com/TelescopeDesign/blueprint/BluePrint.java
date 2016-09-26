@@ -19,6 +19,7 @@ import com.TelescopeDesign.types.TelescopeParts;
 import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
+import com.TelescopeDesign.datamodel.SecondaryMirror;
 import com.TelescopeDesign.datamodel.Tube;
 import com.TelescopeDesign.datamodel.Tube.ReferencePoint;
 
@@ -79,10 +80,11 @@ public class BluePrint extends JPanel{
 		_primMirror.setReference(tube2Primary);				
 		_primMirror.updateData();		
 		
-//		_secMirror = new SecondaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR), _physicalToGrapic);
-//		Reference Primary2Secondary =_dataModel.getReference(PrimaryMirror.ReferencePoint.MIRROR_CENTER, SecondaryMirrorPrint.ReferencePoint.MIRROR_CENTER);
-//		_secMirror.setReference(_border , _opticalAxis.getY1());
-//		_secMirror.updateData();
+		_secMirror = new SecondaryMirrorPrint(_dataModel.getPartModel(TelescopeParts.SECONDARY_MIRROR), _physicalToGrapic);
+		Reference primary2Secondary =_dataModel.getReference(PrimaryMirror.ReferencePoint.MIRROR_CENTER, SecondaryMirror.ReferencePoint.MIRROR_CENTER);
+		_secMirror.setOrigin(_primMirror.getPosition(PrimaryMirror.ReferencePoint.MIRROR_CENTER));
+		_secMirror.setReference(primary2Secondary);
+		_secMirror.updateData();
 		
 		
 	
@@ -108,8 +110,8 @@ public class BluePrint extends JPanel{
 		
 		//draw secondary mirror			
 //		g2d.shear(1, 0);
-//		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
-//		g2d.draw(_secMirror);		
+		g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
+		g2d.draw(_secMirror);		
 //		g2d.shear(-1, 0);
 		
 		//print Origin

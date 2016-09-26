@@ -6,11 +6,12 @@ import java.awt.geom.Rectangle2D;
 import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
+import com.TelescopeDesign.datamodel.PrimaryMirror.ReferencePoint;
 import com.TelescopeDesign.datamodel.Tube;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Reference;
 
-public class PrimaryMirrorPrint extends Rectangle2D{
+public class PrimaryMirrorPrint extends Rectangle2D implements PartPrintInterface{
 
 	Tube.ReferencePoint _referencePoint;
 	Converter _converter;
@@ -34,9 +35,7 @@ public class PrimaryMirrorPrint extends Rectangle2D{
 		
 		 _root = new Point(0,0);
 		 _origin = new Reference(GraphicReference.ORIGIN, PrimaryMirror.ReferencePoint.MIRROR_CENTER, _thickness,_diameter/2);
- 
 		 
-
 		 _xRef = 0;
 		 _yRef = 0;
 		
@@ -112,7 +111,21 @@ public class PrimaryMirrorPrint extends Rectangle2D{
 	}
 	
 	public void setOrigin(Point o)
-	{
+	{		
 		_root.setLocation(o.getX(), o.getY());	   
 	}
+
+
+	@Override
+	public Point getPosition(Enum<?> rP) {
+		
+		Point p = new Point();
+		
+		if(rP.equals(PrimaryMirror.ReferencePoint.MIRROR_CENTER))				
+		{			
+			p.setLocation(_xRef, _yRef+_hight/2);
+		}
+		return p;
+	}
+
 }

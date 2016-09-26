@@ -57,17 +57,14 @@ public class TelescopeModel{
 		_generalTelescopeProperties.add(new Property(Parameter.APERTURE, "Aperture ['']", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.OBSTRUCTION, "Obstruction [%]", 0.0));
 		_generalTelescopeProperties.add(new Property(Parameter.FIELD_SIZE, "Image field size []", 0.0));	
-		
-		
-		//System.out.println(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint().toString());
-		//System.out.println(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint().toString());
+
 		
 		//Define References between telescope parts
 		_refGraph.add(new Reference(_parts.get(TelescopeParts.TUBE).getBaseReferencePoint(), 
 									_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(),-50.0,0.0));		
 		
-		
-		
+		_refGraph.add(new Reference(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(), 
+				_parts.get(TelescopeParts.SECONDARY_MIRROR).getBaseReferencePoint(),-1000.0,0.0));		
 						
 		createTelescopeTree();				
 				
@@ -138,14 +135,15 @@ public class TelescopeModel{
 	
 	public Reference getReference(Enum<?> pointA, Enum<?> pointB)
 	{
+		System.out.println("A:"+ pointA + ", B:" + pointB);
+		
 		for(Reference r : _refGraph.getAllRefernces())
 		{
 			if(r.getStartPoint().equals(pointA) && r.getEndPoint().equals(pointB))
 				return r;
 		}
 		
-		throw new NullPointerException("No Reference could be found");
-		
+		throw new NullPointerException("No Reference could be found");		
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.TelescopeDesign.datamodel;
 
-import java.util.EnumSet;
 
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Property;
