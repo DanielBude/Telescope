@@ -64,10 +64,9 @@ public class TelescopeModel{
 									_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(),-50.0,0.0));		
 		
 		_refGraph.add(new Reference(_parts.get(TelescopeParts.PRIMARY_MIRROR).getBaseReferencePoint(), 
-				_parts.get(TelescopeParts.SECONDARY_MIRROR).getBaseReferencePoint(),-1000.0,0.0));		
+				_parts.get(TelescopeParts.SECONDARY_MIRROR).getBaseReferencePoint(),-1000.0,-10.0));		
 						
-		createTelescopeTree();				
-				
+		createTelescopeTree();			
 	}
 	
 	private void createTelescopeTree()
