@@ -134,7 +134,7 @@ public class TelescopeModel{
 	
 	public Reference getReference(Enum<?> pointA, Enum<?> pointB)
 	{
-		System.out.println("A:"+ pointA + ", B:" + pointB);
+		//System.out.println("A:"+ pointA + ", B:" + pointB);
 		
 		for(Reference r : _refGraph.getAllRefernces())
 		{

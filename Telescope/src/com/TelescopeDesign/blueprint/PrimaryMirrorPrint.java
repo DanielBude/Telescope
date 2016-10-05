@@ -7,6 +7,7 @@ import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
 import com.TelescopeDesign.datamodel.PrimaryMirror.ReferencePoint;
+import com.TelescopeDesign.interfaces.PartPrintInterface;
 import com.TelescopeDesign.datamodel.Tube;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Reference;

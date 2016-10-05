@@ -1,4 +1,4 @@
-package com.TelescopeDesign.blueprint;
+package com.TelescopeDesign.interfaces;
 
 import java.awt.Point;
 import com.TelescopeDesign.types.Reference;

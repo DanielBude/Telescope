@@ -8,6 +8,7 @@ import com.TelescopeDesign.converter.Converter;
 import com.TelescopeDesign.datamodel.PartModel;
 import com.TelescopeDesign.datamodel.PrimaryMirror;
 import com.TelescopeDesign.datamodel.SecondaryMirror;
+import com.TelescopeDesign.interfaces.PartPrintInterface;
 import com.TelescopeDesign.types.Parameter;
 import com.TelescopeDesign.types.Reference;
 

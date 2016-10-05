@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Rectangle;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,6 +17,11 @@ import javax.swing.tree.TreePath;
 
 import com.TelescopeDesign.app.Controller;
 import com.TelescopeDesign.blueprint.BluePrint;
+import com.TelescopeDesign.gui.construction.Construction;
+import com.TelescopeDesign.icons.BluePrintIcon;
+import com.TelescopeDesign.icons.FoucaultIcon;
+import com.TelescopeDesign.icons.RayTracingIcon;
+import com.TelescopeDesign.icons.SpotDiagrammIcon;
 import com.TelescopeDesign.telescopes.TelescopeModel;
 
 public class MainFrame extends JFrame
@@ -26,6 +34,7 @@ public class MainFrame extends JFrame
     private JTree _partsTree;
 	JPanel _southPanel = new JPanel();
 	JPanel _westPanel = new JPanel();
+	JPanel _eastPanel = new JPanel();
 	PropertiesPanel _propPanel;
 	TelescopeModel _model;
     
@@ -53,12 +62,11 @@ public class MainFrame extends JFrame
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(_partsTree);
 	    scrollPane.setBorder(eB);
-	    
-		
+			
 		_propPanel = new PropertiesPanel(_model);	
-		_westPanel.setLayout(new BorderLayout());
-		_westPanel.add(scrollPane,BorderLayout.CENTER);
-		_westPanel.add(_propPanel , BorderLayout.SOUTH);
+		_eastPanel.setLayout(new BorderLayout());
+		_eastPanel.add(scrollPane,BorderLayout.CENTER);
+		_eastPanel.add(_propPanel , BorderLayout.SOUTH);
 				
 		//DrawingsPanel		
 		JTabbedPane drawingPanel = new JTabbedPane();
@@ -70,55 +78,54 @@ public class MainFrame extends JFrame
 		drawingPanel.addTab("Spot Diagramm", spotDiagramm);
 		drawingPanel.addTab("Illumination", new JPanel());
 		
+		JPanel construction = new Construction();
+		//_southPanel.setPreferredSize(getMaximumSize());
+		GridLayout constructionGridLayout = new GridLayout();
+//		constructionGridLayout.setColumns(5);
+//		constructionGridLayout.setRows(5);
+		_southPanel.setLayout(constructionGridLayout);
+		_southPanel.add(construction);
+		
 		
 		//Abberation Panel				
-		String[] abbHeader = {"Aberrations","Value"};
+//		String[] abbHeader = {"Aberrations","Value"};
+//		
+//		DefaultTableModel abbModel = new  DefaultTableModel(abbHeader,5);
+//		JTable abberationsTab = new JTable(abbModel);
+
+		GridLayout gl = new GridLayout();
+		gl.setRows(6);
+		gl.setColumns(1);	
+		gl.setHgap(30);
+		gl.setVgap(10);
 		
-		DefaultTableModel abbModel = new  DefaultTableModel(abbHeader,5);
-		JTable abberationsTab = new JTable(abbModel);
+		_westPanel.setBorder(BorderFactory.createEtchedBorder());
+		_westPanel.setLayout(gl);
+		_westPanel.setAlignmentX(CENTER_ALIGNMENT);
 		
-		_southPanel.setLayout(new BorderLayout());
-	    _southPanel.add(new JScrollPane(abberationsTab), BorderLayout.EAST);
-		_southPanel.add(drawingPanel, BorderLayout.CENTER);
-		
-				
-		//General Telescope property panel
-		String[] genPropHeader = {"General Telescope Properties" ,""};
-		DefaultTableModel genPropModel = new  DefaultTableModel(genPropHeader,3);
-		JTable generalProperties = new JTable(genPropModel);
-		JScrollPane scrPne = new JScrollPane(generalProperties);
-		
-		
-		JPanel tab = new JPanel();		
-		BorderLayout bL = new BorderLayout();
-		
-		tab.setLayout(bL);
-		Color background = new Color(38,104,215);
-		Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
-		Border emptyBorder = BorderFactory.createEmptyBorder();
-		Font headerFont = new Font("Arial", Font.BOLD, 14);
-		generalProperties.setBorder(whiteBorder);
-		generalProperties.getTableHeader().setBackground(background);
-		generalProperties.getTableHeader().setFont(headerFont);
-		generalProperties.getTableHeader().setForeground(Color.WHITE);
-		generalProperties.setForeground(Color.WHITE);
-		generalProperties.setGridColor(Color.WHITE);
-		tab.setForeground(background);
-		//tab.setBorder(emptyBorder);
-		generalProperties.setBackground(background);	
-		generalProperties.setFillsViewportHeight(true);
-		
-		scrPne.setBorder(emptyBorder);
-		scrPne.setBackground(background);
-		scrPne.setForeground(background);
+		_westPanel.add(new BluePrintIcon());	 
+	    _westPanel.add(new SpotDiagrammIcon());
+	    _westPanel.add(new RayTracingIcon());
+	    _westPanel.add(new Label("Image Abberations"));
+	    _westPanel.add(new FoucaultIcon());	    
+		_westPanel.setVisible(true);
+	
+		JPanel centerPanel = new JPanel();		
+		BorderLayout bL = new BorderLayout();//		
+		centerPanel.setLayout(bL);
 		
 		//Visualisation Panel
-		tab.add(_bp,BorderLayout.CENTER);
-		tab.add(scrPne, BorderLayout.EAST);
-	
-		getContentPane().add(_southPanel ,BorderLayout.SOUTH);
-		getContentPane().add(tab, BorderLayout.CENTER);
+		
+		
+		// centerNorth.add(_bp,BorderLayout.CENTER);
+		 centerPanel.add(_bp, BorderLayout.CENTER);
+	     centerPanel.add(construction, BorderLayout.SOUTH);
+		 centerPanel.doLayout();
+	     
+		//getContentPane().add(_southPanel ,BorderLayout.SOUTH);
+		getContentPane().add(centerPanel, BorderLayout.CENTER);
 		getContentPane().add(toolbar, BorderLayout.NORTH);
+		getContentPane().add(_eastPanel, BorderLayout.EAST);
 		getContentPane().add(_westPanel, BorderLayout.WEST);
 				
 		this.setSize(getMaximumSize());		
